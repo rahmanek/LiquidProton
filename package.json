@@ -5,6 +5,7 @@
   "main": "public/index.html",
   "engine":"node 6.2.0",
   "scripts": {
+  	"start": "node index.js",
     "dev": "concurrently \"gulp dev --watch\" \"nodemon index.js\"",
     "deploy": "gulp deploy",
     "view": "npm run deploy && cd builds/web && http-server -o",
