@@ -3,7 +3,6 @@ $primary-color: #00A08A;
 $secondary-color: #FF6A00;
 $gray-light:#F0F0F0;
 $gray-light-2:#DDDDDD;
-$fa-font-path: "../vendor/font-awesome";
 
 @import 'generic';
 
@@ -13,6 +12,37 @@ body, html {
 
 :focus{
    outline: none;
+}
+
+.primary-color{
+   color: $primary-color;
+}
+
+.secondary-color{
+   color: $secondary-color;
+}
+
+.btn-primary{
+   background-color: $primary-color;
+   border:none;
+   &:hover{
+      background-color: desaturate($primary-color,40%);
+   }
+}
+
+.btn-secondary{
+   background-color: $secondary-color;
+   color:white;
+   border:none;
+   &:hover{
+      background-color: desaturate($secondary-color,40%);
+      color:white;
+   }
+
+}
+
+.alert{
+   margin:0;
 }
 
 
@@ -145,24 +175,6 @@ body, html {
       vertical-align: middle;
       pointer-events:none;
    }
-}
-
-.btn-primary{
-   background-color: $primary-color;
-   border:none;
-   &:hover{
-      background-color: desaturate($primary-color,40%);
-   }
-}
-
-.btn-secondary{
-   background-color: $secondary-color;
-   color:white;
-   &:hover{
-      background-color: desaturate($secondary-color,40%);
-      color:white;
-   }
-
 }
 
 #addLinks{

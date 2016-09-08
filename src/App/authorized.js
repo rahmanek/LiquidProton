@@ -17,7 +17,9 @@ export default React.createClass({
                   <SideMenu location={this.props.location} user={this.props.user}/>
                </div>
                <div className="col-xs-12 col-sm-9">
-                  <Notifications notification={this.props.notification}/>
+						<div className={((this.props.notification.retrieve().length>0)?"margin-top-30":"")}>
+                  	<Notifications notification={this.props.notification}/>
+						</div>
                   {React.cloneElement(this.props.children, pass)}
                </div>
             </div>

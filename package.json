@@ -3,10 +3,10 @@
   "version": "0.4.0",
   "description": "",
   "main": "public/index.html",
-  "engine":"node 6.2.0",
+  "engine": "node 6.2.0",
   "scripts": {
-  	"start": "npm run deploy && node index.js",
-    "dev": "concurrently \"gulp dev --watch\" \"nodemon index.js\"",
+    "start": "npm run deploy && node index.js",
+    "dev": "cd public && concurrently \"gulp dev --watch\" \"lite-server index.js\"",
     "deploy": "gulp deploy",
     "view": "npm run deploy && cd builds/web && http-server -o",
     "lint": "eslint modules/*.js",
@@ -31,7 +31,6 @@
     "gulp-uglify": "2.0.0",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
-    "http-server": "^0.9.0",
     "merge-stream": "^1.0.0",
     "mocha": "3.0.2",
     "react": "^15.0.2",
@@ -60,5 +59,9 @@
         "jsx": true
       }
     }
+  },
+  "devDependencies": {
+   "http-server": "^0.9.0",
+   "lite-server": "^2.2.2"
   }
 }

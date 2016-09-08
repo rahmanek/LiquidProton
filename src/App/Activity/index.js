@@ -58,14 +58,16 @@ export default React.createClass({
 						</div>
 					</div>
 				</div>
-				<table className="table"><tbody>
+				<table className="table">
+					<thead><tr><th>Item</th><th>Quantity</th><th>Unit Cost</th><th>Total</th></tr></thead>
+					<tbody>
 					{
 						activity.Receipt.transaction.map((transactions, i)=>{
 							return transactions.map((item, j)=>{
 								if(typeof item.unitCost == "undefined") var unitCost = "";
-								else var unitCost = "$" + item.unitCost + " each";
+								else var unitCost = "$" + item.unitCost;
 								if(typeof item.quantity == "undefined") var quantity = "";
-								else var quantity = item.quantity + " units";
+								else var quantity = item.quantity;
 								return (
 									<tr className={i > 0 && j == 0 ? " newSection":""}>
 										<td>{item.description}</td>
@@ -77,7 +79,8 @@ export default React.createClass({
 							});
 						})
 					}
-				</tbody></table>
+					</tbody>
+				</table>
          </div>
 		);
 	}

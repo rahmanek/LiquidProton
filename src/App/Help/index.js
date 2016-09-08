@@ -5,9 +5,13 @@ export default React.createClass({
 
 	render: function (){
 		return (
-			<div id="help" className="margin-top-30 margin-bottom-30">
+			<div className="container">
 				<div className="row">
-					Help
+					<div className="col-xs-12">
+						<div id="help" className="margin-top-30 margin-bottom-30">
+							Help
+						</div>
+					</div>
 				</div>
 			</div>
 		);

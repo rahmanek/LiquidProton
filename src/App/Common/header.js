@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import config from '../../../config.js'
 import User from '../../classes/User.js'
+import { Link } from 'react-router'
 
 import jQuery from 'jquery'
 window.$ = window.jQuery = jQuery;
@@ -38,7 +39,7 @@ export default React.createClass({
 										<span className="dropdown-toggle font-size-28">Hi </span><span className="font-size-12"><i className="fa fa-caret-down"></i></span>
 									</a>
 									<ul className="dropdown-menu">
-										<li><a href="/">Home</a></li>
+										<li><Link to="/home">Home</Link></li>
 										<li role="separator" className="divider"></li>
 										<li><a href="javascript:" onClick={this.loginRandom}>Login Random User</a></li>
 										<li><a href="javascript:" onClick={this.loginRandomAgent}>Login Random Agent</a></li>

@@ -13,42 +13,27 @@ export default React.createClass({
 	},
 	render: function (){
 		var frag = window.location.hash.split("?")[0];
-		var classes = "list-group-item";
-		var activitiesClasses=classes, linksClasses=classes, apiClasses=classes, settingsClasses=classes, helpClasses=classes, signoutClasses=classes, createClasses=classes;
-		if (frag == "/") activitiesClasses += " active";
-		else if (frag == "/links") linksClasses += " active";
-		else if (frag == "/settings") settingsClasses += " active";
-		else if (frag == "/help") helpClasses += " active";
-		else if (frag == "/apiKeys") apiClasses += " active";
-		else if (frag == "/create") createClasses += " active";
-
-		if(typeof this.props.user.type != "undefined" && this.props.user.type == "agent"){
-			activitiesClasses += " display-none";
-			linksClasses += " display-none";
-		} else if(typeof this.props.user.type != "undefined" && this.props.user.type == "user") {
-			apiClasses += " display-none";
-			createClasses += " display-none"
-		}
+		var isAgent = (typeof this.props.user.type != "undefined" && this.props.user.type == "agent");
 		return (
 			<div id="sidenav" className="margin-top-30">
 				<div className="list-group">
 					<div id="linkBox" className="list-group">
-						<Link to="/" className={activitiesClasses}>
+						<Link to="/" activeClassName="active" className={"list-group-item" + ((isAgent)?" display-none":"")}>
 							Activity
 						</Link>
-						<Link to="/links"  className={linksClasses}>
+						<Link to="/links" activeClassName="active"  className={"list-group-item" + ((isAgent)?" display-none":"")}>
 							Links
 						</Link>
-						<Link to="/apiKeys"  className={apiClasses}>
+						<Link to="/apiKeys" activeClassName="active"  className={"list-group-item" + ((isAgent)?"":" display-none")}>
 							API Keys
 						</Link>
-						<Link to="/settings"  className={settingsClasses}>
+						<Link to="/settings" activeClassName="active" className="list-group-item">
 							Settings
 						</Link>
-						<Link to="/create"  className={createClasses}>
+						<Link to="/create" activeClassName="active" className={"list-group-item" + ((isAgent)?"":" display-none")}>
 							Create
 						</Link>
-						<Link to="/help"  className={helpClasses}>
+						<Link to="/help" activeClassName="active" target="_blank"  className="list-group-item">
 							Help
 						</Link>
 						<a id="signout" className="list-group-item" href="javascript:" onClick={this.logout}>Sign Out</a>
