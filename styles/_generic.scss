@@ -1,0 +1,117 @@
+.bold{
+    font-weight:bold;
+}
+
+.displayTable{
+   display:table;
+}
+
+.inline-block{
+   display:inline-block;
+}
+
+.displayTableCellMiddle{
+   display:table-cell;
+   vertical-align:middle;
+   margin:0 auto;
+}
+
+.display-none{
+   display: none;
+}
+
+.display-block{
+   display:block;
+}
+
+.autoMargin{
+   margin:auto;
+}
+
+.nowrap{
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.overflowHidden{
+   overflow:hidden;
+}
+
+.normal{
+   font-weight:normal;
+}
+
+.lineHeightNormal{
+   line-height: normal;
+}
+
+.lineHeight1{
+   line-height:1;
+}
+
+.border-none{
+   border:none;
+}
+
+.relative{
+   position:relative;
+}
+
+.cursor-default{
+   cursor:default;
+}
+
+.cursor-hand{
+   cursor: pointer;
+   cursor: hand;
+}
+
+.float-right{
+    float:right;
+}
+.float-left{
+    float:left;
+}
+
+.text-white{
+   &:link,&:hover, &:visited, &:active, &:focus {
+      color:#FFFFFF;
+   }
+}
+
+.linkHand{
+   cursor: pointer;
+   cursor: hand;
+}
+
+.height-100{
+    height:100%;
+}
+
+.width-100{
+    width:100%;
+}
+
+// Add font-size classes
+@for $i from 6 through 16 {
+   .font-size-#{$i * 2}{
+      font-size: #{$i * 2}px;
+   }
+}
+// Add margin/padding classes
+
+.margin-left-auto{
+   margin-left: auto;
+}
+
+@for $i from 0 through 10 {
+   @each $positionType in left, right, top, bottom{
+      @each $boundryType in margin, padding{
+
+         .#{$boundryType}-#{$positionType}-#{$i * 5} {
+            #{$boundryType}-#{$positionType}: #{$i * 5}px;
+         }
+      }
+   }
+}

@@ -1,0 +1,210 @@
+
+$primary-color: #00A08A;
+$secondary-color: #FF6A00;
+$gray-light:#F0F0F0;
+$gray-light-2:#DDDDDD;
+$fa-font-path: "../vendor/font-awesome";
+
+@import 'generic';
+
+body, html {
+   background-color: $gray-light;
+}
+
+:focus{
+   outline: none;
+}
+
+
+#header{
+   height:60px;
+   width:100%;
+   border: none;
+   background-color:$primary-color;
+   -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.35);
+   -moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.35);
+   box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.35);
+
+   .headerMenu{
+      line-height:60px;
+      font-size:20px;
+      color:white;
+
+      .menuBody{
+         margin-top:-15px;
+      }
+   }
+}
+
+#sidenav{
+
+   .active{
+      background-color: lighten(desaturate($secondary-color,30%),20%);
+      border-color:transparent;
+   }
+
+   .list-group-item{
+       border-right: 2px solid $secondary-color !important;
+
+       &:first-child{
+          border-top-right-radius: 0;
+          border-top-left-radius: 0;
+       }
+
+       &:last-child{
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 0;
+       }
+
+       &:hover{
+          background-color: lighten(desaturate($secondary-color,30%),20%);
+          border-color:transparent;
+          color: white;
+       }
+
+   }
+}
+
+#links{
+   .list-group-item{
+       border-right: 2px solid $primary-color;
+   }
+
+}
+
+#activities{
+   .list-group-item{
+      border-right: 2px solid $primary-color;
+      cursor: pointer;
+      cursor: hand;
+      &:hover{
+         background-color:$gray-light;
+      }
+   }
+}
+
+#activity{
+   background-color: white;
+   padding: 30px 30px 10px 30px;
+   border: 1px solid $gray-light-2;
+
+   .newSection{
+      border-top: 3px solid #999;
+   }
+
+   #receiptInfo{
+      th, td{
+         border:none;
+      }
+   }
+
+   & .activity-header{
+      border-bottom: 1px solid $primary-color;
+      padding-bottom:7px;
+   }
+}
+
+#settings{
+   background-color: white;
+   padding: 30px 30px 30px 30px;
+   border: 1px solid $gray-light-2;
+
+   .light-border{
+      border-top: 1px solid $gray-light-2;
+      padding: 10px 0;
+   }
+}
+
+#help{
+   background-color: white;
+   padding: 30px 30px 30px 30px;
+   border: 1px solid $gray-light-2;
+}
+
+
+#modal{
+   .modal-content{
+      padding:25px;
+      border-radius: 0px;
+      /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+      width:inherit;
+      height:inherit;
+      /* To center horizontally */
+      margin: 0 auto;
+      pointer-events: all;
+   }
+
+   .vertical-alignment-helper {
+      display:table;
+      height: 100%;
+      width: 100%;
+      pointer-events:none;
+   }
+   .vertical-align-center {
+      display: table-cell;
+      vertical-align: middle;
+      pointer-events:none;
+   }
+}
+
+.btn-primary{
+   background-color: $primary-color;
+   border:none;
+   &:hover{
+      background-color: desaturate($primary-color,40%);
+   }
+}
+
+.btn-secondary{
+   background-color: $secondary-color;
+   color:white;
+   &:hover{
+      background-color: desaturate($secondary-color,40%);
+      color:white;
+   }
+
+}
+
+#addLinks{
+   background-color: white;
+   border: 1px solid $gray-light-2;
+   #spreedly-number{
+      height:20px;
+   }
+   #spreedly-cvv{
+      height:20px;
+   }
+   .givenNameBox{
+      padding:15px;
+      border-bottom: 1px solid $gray-light-2;
+   }
+   .surNameBox{
+      padding:15px;
+      border-bottom: 1px solid $gray-light-2;
+      border-left: 1px solid $gray-light-2;
+   }
+   .ccBox{
+      padding:15px;
+      border-bottom: 1px solid $gray-light-2;
+   }
+   .cvvBox{
+      padding:15px;
+      border-bottom: 1px solid $gray-light-2;
+      border-right: 1px solid $gray-light-2;
+   }
+   .expBox{
+      input{
+         height:20px;
+      }
+      padding:15px;
+      border-bottom: 1px solid $gray-light-2;
+   }
+
+}
+
+#home{
+   .panel{
+      border-radius:0;
+      padding:20px;
+   }
+}

@@ -1,0 +1,64 @@
+{
+  "name": "liquidproton",
+  "version": "0.4.0",
+  "description": "",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "concurrently \"gulp dev --watch\" \"nodemon index.js\"",
+    "deploy": "gulp deploy",
+    "view": "npm run deploy && cd builds/web && http-server -o",
+    "lint": "eslint modules/*.js",
+    "test": "gulp dev --watch",
+    "postinstall": "gulp bower"
+  },
+  "author": "Ebad Rahman <rahmanek@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.3.0",
+    "bootstrap": "^3.3.6",
+    "browserify": "^13.0.1",
+    "chai": "^3.5.0",
+    "concurrently": "^2.0.0",
+    "eslint": "3.2.2",
+    "gulp": "^3.9.1",
+    "gulp-bower": "0.0.13",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "2.0.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
+    "http-server": "^0.9.0",
+    "merge-stream": "^1.0.0",
+    "mocha": "3.0.2",
+    "react": "^15.0.2",
+    "react-dom": "15.3.0",
+    "react-router": "^2.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0",
+    "yargs": "^4.7.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "emcaVersion": "6",
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    }
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "jquery": "^3.1.0",
+    "jquery-ui": "^1.10.5"
+  }
+}
