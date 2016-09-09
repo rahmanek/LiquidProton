@@ -62,7 +62,7 @@ export default React.createClass({
 								<Notifications notification={this.props.notification}/>
 							</div>
 							<div className="panel panel-default">
-								An awesome app
+								Welcome!<br/><br/>This will be an awesome app someday...
 							</div>
 						</div>
 						<div className="col-xs-4">
