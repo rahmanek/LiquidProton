@@ -36,7 +36,7 @@ export default React.createClass({
 							<div className="margin-top-10">
 								<div className="btn-group">
 									<a href="javascript:" data-toggle="dropdown" className="text-white dropdown-toggle">
-										<span className="dropdown-toggle font-size-28">Hi </span><span className="font-size-12"><i className="fa fa-caret-down"></i></span>
+										<span className="dropdown-toggle font-size-28">Flectino </span><span className="font-size-12"><i className="fa fa-caret-down"></i></span>
 									</a>
 									<ul className="dropdown-menu">
 										<li><Link to="/home">Home</Link></li>
