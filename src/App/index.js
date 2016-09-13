@@ -6,6 +6,7 @@ import Activity from './Activity/index.js'
 import Links from './Links/index.js'
 import AddLink from './Links/addLink.js'
 import Settings from './Settings/index.js'
+import Register from './Register/index.js'
 import Help from './Help/index.js'
 import Home from './Home/index.js'
 import Create from './Create/index.js'
@@ -18,6 +19,7 @@ render((
 		<Route component={App}>
 			<Route path="/home" component={Home}/>
 			<Route path="/help" component={Help}/>
+			<Route path="/register" component={Register}/>
 			<Route component={Authorized}>
 				<Route path="/" component={Activities}/>
 				<Route path="/activity" component={Activity}/>

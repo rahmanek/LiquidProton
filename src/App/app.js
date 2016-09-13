@@ -2,10 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import Header from './Common/header.js'
 import Notifications from './Common/notifications.js'
-import config from '../../config.js'
-import User from '../classes/User.js'
 import jQuery from 'jquery'
-import { browserHistory } from 'react-router'
 window.$ = window.jQuery = jQuery;
 require('bootstrap/js/alert');
 
@@ -30,17 +27,6 @@ export default React.createClass({
 	},
 	retrieveNotifications: function(){
 		return this.state.notifications;
-	},
-	componentDidMount: function(){
-		var postData = {
-			authorization:User.getAuthorization(),
-		}
-		$.post(config.apiHost + "/user/retrieve", postData)
-		.then((data)=>{
-			this.setState({user:data});
-		}).fail(function(err){
-			browserHistory.push("home");
-		});
 	},
 	componentWillReceiveProps:function(nextProps){
 		// Remove notifications when view changes

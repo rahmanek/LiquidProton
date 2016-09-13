@@ -2,8 +2,27 @@ import React from 'react'
 import { render } from 'react-dom'
 import SideMenu from './Common/SideMenu.js'
 import Notifications from './Common/notifications.js'
+import User from '../classes/User.js'
+import { browserHistory } from 'react-router'
+import config from '../../config.js'
 
 export default React.createClass({
+
+	componentWillMount: function(){
+		if(User.getAuthorization() === null ) browserHistory.push("home");
+	},
+
+	componentDidMount: function(){
+		var postData = {
+			authorization:User.getAuthorization(),
+		}
+		$.post(config.apiHost + "/user/retrieve", postData)
+		.then((data)=>{
+			this.setState({user:data});
+		}).fail(function(err){
+			browserHistory.push("home");
+		});
+	},
 
 	render: function (){
       var pass ={
