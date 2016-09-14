@@ -5,7 +5,7 @@ import CardForm from '../Common/cardForm.js'
 export default React.createClass({
 	getInitialState: function() {
 	   	return {
-				editMode: false
+				email:""
 		 	};
 	},
 
@@ -14,7 +14,7 @@ export default React.createClass({
 			<div className="container">
 				<div className="row">
 					<div className="col-xs-12">
-						<div id="register" className="margin-top-30 margin-bottom-30">
+						<div id="register" className="page-content">
 							<div className="col-xs-6 givenNameBox">
 								<div className="col-xs-12">
 									<span className="cursor-default">First Name</span>
@@ -29,6 +29,22 @@ export default React.createClass({
 								</div>
 								<div className="col-xs-12 margin-top-5">
 									<input className="col-xs-12 border-none" value={this.state.surName} onChange={this.handleChange} type="text"  id="surName" name="full_name" placeholder="Cardholder last name here"/>
+								</div>
+							</div>
+							<div className="col-xs-6 emailBox">
+								<div className="col-xs-12">
+									<span className="cursor-default">Email</span>
+								</div>
+								<div className="col-xs-12 margin-top-5">
+									<input className="col-xs-12 border-none" value={this.state.email} onChange={this.handleChange} type="text"  id="email" placeholder="Email"/>
+								</div>
+							</div>
+							<div className="col-xs-6 passwordBox">
+								<div className="col-xs-12">
+									<span className="cursor-default">Password</span>
+								</div>
+								<div className="col-xs-12 margin-top-5">
+									<input className="col-xs-12 border-none" value={this.state.password} onChange={this.handleChange} type="password"  id="password" placeholder="Password Here"/>
 								</div>
 							</div>
 							<CardForm></CardForm>

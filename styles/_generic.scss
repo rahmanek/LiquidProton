@@ -34,8 +34,13 @@
    text-overflow: ellipsis;
 }
 
-.overflowHidden{
+.overflow-hidden{
    overflow:hidden;
+}
+
+.overflow-scroll-y{
+   overflow-y: auto;
+   overflow-x: hidden;
 }
 
 .normal{

@@ -47,9 +47,11 @@ export default React.createClass({
 			user:this.state.user
 		}
 		return (
-         <div>
+         <div className="height-100">
             <Header notification={pass.notification}/>
-				{React.cloneElement(this.props.children, pass)}
+				<div className="page-body">
+					{React.cloneElement(this.props.children, pass)}
+				</div>
          </div>
 		);
 	}

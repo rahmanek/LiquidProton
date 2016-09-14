@@ -30,17 +30,15 @@ export default React.createClass({
          user: this.props.user
       }
 		return (
-         <div className="container">
-            <div className="row">
-               <div className="hidden-xs col-sm-3">
-                  <SideMenu location={this.props.location} user={this.props.user}/>
-               </div>
-               <div className="col-xs-12 col-sm-9">
-						<div className={((this.props.notification.retrieve().length>0)?"margin-top-30":"")}>
-                  	<Notifications notification={this.props.notification}/>
-						</div>
-                  {React.cloneElement(this.props.children, pass)}
-               </div>
+         <div className="container height-100 padding-right-0 padding-left-0">
+            <div className="hidden-xs col-sm-3">
+               <SideMenu location={this.props.location} user={this.props.user}/>
+            </div>
+            <div className="col-xs-12 col-sm-9 padding-right-0 padding-left-0 height-100 overflow-scroll-y">
+					<div className={((this.props.notification.retrieve().length>0)?"margin-top-30":"")}>
+               	<Notifications notification={this.props.notification}/>
+					</div>
+               {React.cloneElement(this.props.children, pass)}
             </div>
          </div>
 		);

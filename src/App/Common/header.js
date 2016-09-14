@@ -49,16 +49,9 @@ export default React.createClass({
 						</div>
 						<div className="col-xs-6 hidden-sm hidden-md hidden-lg headerMenu text-right">
 							<div className="btn-group">
-								<a href="javascript:" data-toggle="dropdown" className="text-white dropdown-toggle">
-									<i className="fa fa-bars"></i>
-								</a>
-								<ul className="dropdown-menu menuBody">
-									<li><a href="/">Activity</a></li>
-									<li><a href="/links">Links</a></li>
-									<li><a href="/settings">Settings</a></li>
-									<li><a href="/help">Help</a></li>
-									<li><a href="javascript:">Sign Out</a></li>
-								</ul>
+								<Link to=""><i className="fa fa-fw fa-bars margin-right-15 font-size-24"/></Link>
+								<Link to="links"><i className="fa fa-fw fa-link margin-right-15 font-size-24"/></Link>
+								<Link to="settings"><i className="fa fa-fw fa-wrench font-size-24"/></Link>
 							</div>
 
       				</div>

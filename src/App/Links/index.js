@@ -77,10 +77,10 @@ export default React.createClass({
 								<div className="col-xs-3 bold">
 									Card Last Four
 								</div>
-								<div className="col-xs-3 bold">
+								<div className="col-xs-4 bold">
 									Date Added
 								</div>
-								<div className="col-xs-3 bold">
+								<div className="col-xs-4 bold">
 									Cardholder name
 								</div>
 							</div>
@@ -93,17 +93,12 @@ export default React.createClass({
 												<div className="col-xs-3">
 													{link.lastFour}
 												</div>
-												<div className="col-xs-3">
+												<div className="col-xs-4">
 													{link.formattedDate}
 												</div>
-												<div className="col-xs-3">
+												<div className="col-xs-4">
 													{link.name}
 												</div>
-												<div className="col-xs-2">
-													<span className="linkHand">
-														{(link.isVerified) ? "":"Verify"}
-													</span>
-			         						</div>
 												<div className="col-xs-1">
 													<span className="linkHand" data-toggle="modal" data-target={"#removeModal" + i}>
 	           										<i className="fa fa-times"></i>

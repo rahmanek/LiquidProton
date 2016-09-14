@@ -28,7 +28,7 @@ export default React.createClass({
 		var date = new Date(Date.parse(activity.Receipt.createdAt));
 		var formattedDate = date.toLocaleString();
 		return (
-         <div id="activity" className="margin-top-30 margin-bottom-30">
+         <div id="activity" className="page-content">
 				<div className="row activity-header">
 					<div className="col-xs-6">
 						{formattedDate}
