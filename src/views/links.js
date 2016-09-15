@@ -1,9 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
-import config from '../../../config.js'
-import User from '../../classes/User.js'
+import config from '../../config.js'
+import User from '../classes/User.js'
 import { Link } from 'react-router'
-import Modal from '../Common/modal.js'
+import Modal from '../components/modal.js'
 
 import jQuery from 'jquery'
 window.$ = window.jQuery = jQuery;
@@ -46,7 +46,7 @@ export default React.createClass({
 			var links = this.state.links;
 			links.splice(linkId,1);
 			this.setState({links:links}, function(){
-				this.props.notification.create({message:"The card was successfully deleted.", type:"danger"});
+				this.props.notification.create({message:"The card was successfully deleted."});
 			});
 			return;
 		}).catch( (err) => {

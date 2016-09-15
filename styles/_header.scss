@@ -1,0 +1,23 @@
+#header{
+   z-index: 90;
+   position:fixed;
+   top:0;
+   left:0;
+   height:$header-height;
+   width:100%;
+   border: none;
+   background-color:$primary-color;
+   -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.35);
+   -moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.35);
+   box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.35);
+
+   .headerMenu{
+      line-height:$header-height;
+      font-size:20px;
+      color:white;
+
+      .menuBody{
+         margin-top:-15px;
+      }
+   }
+}

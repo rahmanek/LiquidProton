@@ -6,15 +6,26 @@ $gray-light-2:#DDDDDD;
 $header-height:60px;
 
 @import 'generic';
+@import 'notifications';
+@import 'sideNav';
+@import 'modal';
+@import 'header';
+@import 'home';
+@import 'activity';
+@import 'activities';
+@import 'links';
+@import 'settings';
 
 body, html {
    height:100%;
    width:100%;
    background-color: $gray-light;
 }
-a{
+
+a {
    color:white;
 }
+
 #app{
    height:100%;
 }
@@ -24,11 +35,18 @@ a{
    height:100%;
 }
 
-.content{
+.views{
+   @media (min-width: 768px) {
+      margin: 30px 0 0 0;
+   }
+}
+
+#authorized .views{
    @media (min-width: 768px) {
       margin: 30px 0 0 15px;
    }
 }
+
 :focus{
    outline: none;
 }
@@ -60,10 +78,6 @@ a{
 
 }
 
-.alert{
-   margin:0;
-}
-
 .border-bottom{
    border-bottom: 1px solid $gray-light-2;
 }
@@ -72,113 +86,27 @@ a{
    border-right: 1px solid $gray-light-2;
 }
 
-#header{
-   z-index: 99;
-   position:fixed;
-   top:0;
-   left:0;
-   height:$header-height;
-   width:100%;
-   border: none;
-   background-color:$primary-color;
-   -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.35);
-   -moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.35);
-   box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.35);
-
-   .headerMenu{
-      line-height:$header-height;
-      font-size:20px;
-      color:white;
-
-      .menuBody{
-         margin-top:-15px;
-      }
-   }
-}
-
-#sidenav{
-
-   .active{
-      background-color: lighten(desaturate($secondary-color,30%),20%);
-      border-color:transparent;
-   }
-
-   .list-group-item{
-       border-right: 2px solid $secondary-color !important;
-
-       &:first-child{
-          border-top-right-radius: 0;
-          border-top-left-radius: 0;
-       }
-
-       &:last-child{
-          border-bottom-right-radius: 0;
-          border-bottom-left-radius: 0;
-       }
-
-       &:hover{
-          background-color: lighten(desaturate($secondary-color,30%),20%);
-          border-color:transparent;
-          color: white;
-       }
-
-   }
-}
-
-#links{
-   .list-group-item{
-       border-right: 2px solid $primary-color;
-   }
-
-}
-
-#activities{
-   .list-group-item{
-      // border-right: 2px solid $primary-color;
-      cursor: pointer;
-      cursor: hand;
-      border-radius:0;
-      &:hover{
-         background-color:$gray-light;
-      }
-   }
-}
-
-#activity{
-   background-color: white;
-   padding: 30px 30px 10px 30px;
-   border: 1px solid $gray-light-2;
-
-   .newSection{
-      border-top: 3px solid #999;
-   }
-
-   #receiptInfo{
-      th, td{
-         border:none;
-      }
-   }
-
-   & .activity-header{
-      border-bottom: 1px solid $primary-color;
-      padding-bottom:7px;
-   }
-}
-
-#settings{
-   background-color: white;
-   padding: 30px 30px 30px 30px;
-   border: 1px solid $gray-light-2;
-
-   .light-border{
-      border-top: 1px solid $gray-light-2;
-      padding: 10px 0;
-   }
-}
-
 #register{
-   background-color: white;
-   border: 1px solid $gray-light-2;
+   .form-box{
+      padding:15px 15px 15px 20px;
+      border-top: 1px solid $gray-light-2;
+      border-right: 1px solid $gray-light-2;
+   }
+   .container{
+      background-color: white;
+   }
+   .border-bottom{
+      border-bottom: 1px solid $gray-light-2;
+   }
+
+   .padding-5{
+      padding:15px;
+   }
+
+   .border-right{
+      border-right: 1px solid $gray-light-2;
+   }
+
    #spreedly-number{
       height:20px;
    }
@@ -187,20 +115,20 @@ a{
    }
    .givenNameBox{
       padding:15px;
-      border-bottom: 1px solid $gray-light-2;
+      // border-bottom: 1px solid $gray-light-2;
    }
    .surNameBox{
       padding:15px;
-      border-bottom: 1px solid $gray-light-2;
+      // border-bottom: 1px solid $gray-light-2;
       border-left: 1px solid $gray-light-2;
    }
    .ccBox{
       padding:15px;
-      border-bottom: 1px solid $gray-light-2;
+      // border-bottom: 1px solid $gray-light-2;
    }
    .cvvBox{
       padding:15px;
-      border-bottom: 1px solid $gray-light-2;
+      // border-bottom: 1px solid $gray-light-2;
       border-right: 1px solid $gray-light-2;
    }
    .emailBox{
@@ -210,7 +138,7 @@ a{
    }
    .passwordBox{
       padding:15px;
-      border-bottom: 1px solid $gray-light-2;
+      // border-bottom: 1px solid $gray-light-2;
       border-left: 1px solid $gray-light-2;
    }
    .expBox{
@@ -218,39 +146,7 @@ a{
          height:20px;
       }
       padding:15px;
-      border-bottom: 1px solid $gray-light-2;
-   }
-}
-
-#help{
-   background-color: white;
-   padding: 30px 30px 30px 30px;
-   border: 1px solid $gray-light-2;
-}
-
-
-#modal{
-   .modal-content{
-      padding:25px;
-      border-radius: 0px;
-      /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
-      width:inherit;
-      height:inherit;
-      /* To center horizontally */
-      margin: 0 auto;
-      pointer-events: all;
-   }
-
-   .vertical-alignment-helper {
-      display:table;
-      height: 100%;
-      width: 100%;
-      pointer-events:none;
-   }
-   .vertical-align-center {
-      display: table-cell;
-      vertical-align: middle;
-      pointer-events:none;
+      // border-bottom: 1px solid $gray-light-2;
    }
 }
 
@@ -326,11 +222,4 @@ a{
       border-bottom: 1px solid $gray-light-2;
    }
 
-}
-
-#home{
-   .panel{
-      border-radius:0;
-      padding:20px;
-   }
 }

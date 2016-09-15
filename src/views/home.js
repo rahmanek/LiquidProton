@@ -1,9 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Header from '../Common/header.js'
-import config from '../../../config.js'
-import User from '../../classes/User.js'
-import Notifications from '../Common/notifications.js'
+import Header from '../components/header.js'
+import config from '../../config.js'
+import User from '../classes/User.js'
 import jQuery from 'jquery'
 window.$ = window.jQuery = jQuery;
 import { browserHistory } from 'react-router'
@@ -58,9 +57,6 @@ export default React.createClass({
 				<div className="container">
 					<div className="row">
 						<div className="col-xs-8">
-							<div className={((this.props.notification.retrieve().length>0)?"margin-bottom-30":"")}>
-								<Notifications notification={this.props.notification}/>
-							</div>
 							<div className="panel panel-default">
 								Welcome!<br/><br/>This will be an awesome app someday...
 							</div>

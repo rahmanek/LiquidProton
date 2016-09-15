@@ -1,10 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
-import SideMenu from './Common/SideMenu.js'
-import Notifications from './Common/notifications.js'
-import User from '../classes/User.js'
+import SideMenu from './components/SideMenu.js'
+import User from './classes/User.js'
 import { browserHistory } from 'react-router'
-import config from '../../config.js'
+import config from '../config.js'
 
 export default React.createClass({
 
@@ -30,14 +29,11 @@ export default React.createClass({
          user: this.props.user
       }
 		return (
-         <div className="container height-100 padding-right-0 padding-left-0">
+         <div id="authorized" className="container height-100 padding-right-0 padding-left-0">
             <div className="hidden-xs col-sm-3">
                <SideMenu location={this.props.location} user={this.props.user}/>
             </div>
             <div className="col-xs-12 col-sm-9 padding-right-0 padding-left-0 height-100 overflow-scroll-y">
-					<div className={((this.props.notification.retrieve().length>0)?"margin-top-30":"")}>
-               	<Notifications notification={this.props.notification}/>
-					</div>
                {React.cloneElement(this.props.children, pass)}
             </div>
          </div>

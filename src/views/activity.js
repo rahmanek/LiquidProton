@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
-import config from '../../../config.js'
-import User from '../../classes/User.js'
+import config from '../../config.js'
+import User from '../classes/User.js'
 
 export default React.createClass({
 	getInitialState:function(){

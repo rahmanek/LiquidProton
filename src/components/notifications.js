@@ -1,6 +1,5 @@
 import React from 'react'
 import { render } from 'react-dom'
-import config from '../../../config.js'
 
 import jQuery from 'jquery'
 window.$ = window.jQuery = jQuery;
@@ -12,7 +11,7 @@ export default React.createClass({
 		var notificationView = (<div></div>);
 		if (notifications.length > 0){
 			notificationView = (
-				<div>
+				<div id="notifications">
 					{
 						notifications.map((notification, i)=>{
 							if (notification.type == undefined) notification.type = "success";

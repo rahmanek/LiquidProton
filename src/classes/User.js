@@ -15,11 +15,11 @@ export default {
 	getAuthorization:function(){
 		//Check session storage then local storage, if neither return a null user
 		var authorization = window.sessionStorage.getItem('authorization');
-		if(authorization == undefined){
+		if(typeof authorization == "undefined"){
 			authorization = window.localStorage.getItem('authorization');
-		}
-		if(authorization == undefined){
-			authorization = null;
+			if(typeof authorization == "undefined"){
+				authorization = null;
+			}
 		}
 		return authorization;
 	},

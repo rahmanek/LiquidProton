@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Header from './Common/header.js'
-import Notifications from './Common/notifications.js'
+import Header from './components/header.js'
+import Notifications from './components/notifications.js'
 import jQuery from 'jquery'
 window.$ = window.jQuery = jQuery;
 require('bootstrap/js/alert');
@@ -48,6 +48,7 @@ export default React.createClass({
 		}
 		return (
          <div className="height-100">
+				<Notifications notification={pass.notification}/>
             <Header notification={pass.notification}/>
 				<div className="page-body">
 					{React.cloneElement(this.props.children, pass)}

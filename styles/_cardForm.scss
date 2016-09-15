@@ -1,0 +1,38 @@
+
+#cardForm{
+   // background-color: white;
+   // border: 1px solid $gray-light-2;
+   #spreedly-number{
+      height:20px;
+   }
+   #spreedly-cvv{
+      height:20px;
+   }
+   .givenNameBox{
+      padding:15px;
+      border-bottom: 1px solid $gray-light-2;
+   }
+   .surNameBox{
+      padding:15px;
+      border-bottom: 1px solid $gray-light-2;
+      border-left: 1px solid $gray-light-2;
+   }
+   .ccBox{
+      padding:15px;
+      border-bottom: 1px solid $gray-light-2;
+   }
+   .cvvBox{
+      padding:15px;
+      border-bottom: 1px solid $gray-light-2;
+      border-right: 1px solid $gray-light-2;
+   }
+
+   .expBox{
+      input{
+         height:20px;
+      }
+      padding:15px;
+      border-bottom: 1px solid $gray-light-2;
+   }
+
+}

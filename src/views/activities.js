@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
-import config from '../../../config.js'
-import User from '../../classes/User.js'
+import config from '../../config.js'
+import User from '../classes/User.js'
 import { Link, browserHistory } from 'react-router'
 export default React.createClass({
 	getInitialState:function(){
@@ -21,7 +21,7 @@ export default React.createClass({
 	},
 	render: function (){
 		return (
-         <div id="activities" className="content">
+         <div id="activities" className="views">
 				{
 					this.state.activities.map((activity,i)=>{
 						var date = Date.parse(activity.Receipt.createdAt);

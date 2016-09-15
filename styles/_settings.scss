@@ -1,0 +1,10 @@
+#settings{
+   background-color: white;
+   padding: 30px 30px 30px 30px;
+   border: 1px solid $gray-light-2;
+
+   .light-border{
+      border-top: 1px solid $gray-light-2;
+      padding: 10px 0;
+   }
+}

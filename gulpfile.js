@@ -38,7 +38,7 @@ var styles = function(){
 var jsBundle = function (prod){
 	var Browserify;
 
-	var bundle = browserify({entries: 'src/App/index.js', debug: !prod});
+	var bundle = browserify({entries: 'src/web.js', debug: !prod});
 	if (watch) bundle = watchify(bundle);
 	bundle.transform(babelify)
 	.on('log', gutil.log)

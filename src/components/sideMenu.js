@@ -1,12 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Link } from 'react-router'
-import User from '../../classes/User.js'
+import User from '../classes/User.js'
 export default React.createClass({
-	getInitialState: function() {
-		return{
-		}
-	},
 	logout: function(){
 		User.deleteAuthorization();
 		window.location = "/home";
