@@ -23,9 +23,12 @@ export default React.createClass({
 		return;
 	},
 	componentWillReceiveProps: function(nextProps){
-		console.log(nextProps);
-		if (nextProps.processCard == true)
-			this.submitCard();
+		if (nextProps.processSignal == true){
+			this.props.changeSignal(false, ()=>{
+				this.submitCard();
+			});
+		}
+		return;
 	},
 	componentDidMount: function(){
 
@@ -63,30 +66,14 @@ export default React.createClass({
 		});
 
 		Spreedly.on("paymentMethod", (token, data)=>{
-			var postData = {
-				authorization: User.getAuthorization(),
-				token:token
-			};
-			$.post(config.apiHost + "/link/creditCard/create", postData)
-			.then((data)=>{
-				browserHistory.push({
-					pathname:"links",
-					query:{
-						message:"Your card has been successfully added!"
-					}
-				});
-			}).catch( (err) => {
-				if(err.status == 409) this.props.notification.create({message:"The same link has been added already!", type:"danger"});
-				else if(err.status == 400)  this.props.notification.create({message:"The card information provided could not be verified.  Please check and try again.", type:"danger"})
-				else this.props.notification.create({message:"There was an error adding your link.", type:"danger"});
-				this.setState({processingCard:false});
+			this.setState({processingCard:false}, function(){
+				this.props.onTokenization(token);
 			});
 			return;
 		});
 	},
 	submitCard: function(){
 		if(this.state.processingCard) return;
-		console.log("PROCESSING!"); return;
 		this.setState({processingCard:true},function(){
 			Spreedly.tokenizeCreditCard({
 				month: this.state.month,
@@ -95,7 +82,6 @@ export default React.createClass({
 				last_name:this.state.surName
 			});
 		});
-
 		return;
 	},
 
@@ -124,7 +110,6 @@ export default React.createClass({
 							}
 						</div>
 						<div id="spreedly-number" className="col-xs-12 margin-top-5">
-							{/* <div id="spreedly-number" className="col-xs-12"></div> */}
 						</div>
 					</div>
 				</div>

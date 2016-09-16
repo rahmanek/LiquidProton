@@ -28,7 +28,7 @@ export default React.createClass({
 		var date = new Date(Date.parse(activity.Receipt.createdAt));
 		var formattedDate = date.toLocaleString();
 		return (
-         <div id="activity" className="page-content">
+         <div id="activity" className="views">
 				<div className="row activity-header">
 					<div className="col-xs-6">
 						{formattedDate}
@@ -63,8 +63,8 @@ export default React.createClass({
 					<thead><tr><th>Item</th><th>Quantity</th><th>Unit Cost</th><th>Total</th></tr></thead>
 					<tbody>
 					{
-						activity.Receipt.transaction.map((transactions, i)=>{
-							return transactions.map((item, j)=>{
+						activity.Receipt.items.map((itemGroup, i)=>{
+							return itemGroup.map((item, j)=>{
 								if(typeof item.unitCost == "undefined") var unitCost = "";
 								else var unitCost = "$" + item.unitCost;
 								if(typeof item.quantity == "undefined") var quantity = "";

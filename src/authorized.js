@@ -6,7 +6,11 @@ import { browserHistory } from 'react-router'
 import config from '../config.js'
 
 export default React.createClass({
-
+	getInitialState: function() {
+		return{
+			user:{}
+		}
+	},
 	componentWillMount: function(){
 		if(User.getAuthorization() === null ) browserHistory.push("home");
 	},
@@ -26,12 +30,12 @@ export default React.createClass({
 	render: function (){
       var pass ={
          notification: this.props.notification,
-         user: this.props.user
+         user: this.state.user
       }
 		return (
          <div id="authorized" className="container height-100 padding-right-0 padding-left-0">
             <div className="hidden-xs col-sm-3">
-               <SideMenu location={this.props.location} user={this.props.user}/>
+               <SideMenu location={this.props.location} user={pass.user}/>
             </div>
             <div className="col-xs-12 col-sm-9 padding-right-0 padding-left-0 height-100 overflow-scroll-y">
                {React.cloneElement(this.props.children, pass)}

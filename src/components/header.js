@@ -37,7 +37,6 @@ export default React.createClass({
 		});
 	},
 	render: function (){
-		console.log(this.state.isAuthenticated)
 		return (
 			<div id="header">
 				<div className="container">

@@ -23,11 +23,11 @@ export default React.createClass({
 						<Link to="/apiKeys" activeClassName="active"  className={"list-group-item" + ((isAgent)?"":" display-none")}>
 							API Keys
 						</Link>
-						<Link to="/settings" activeClassName="active" className="list-group-item">
-							Settings
-						</Link>
 						<Link to="/create" activeClassName="active" className={"list-group-item" + ((isAgent)?"":" display-none")}>
 							Create
+						</Link>
+						<Link to="/settings" activeClassName="active" className="list-group-item">
+							Settings
 						</Link>
 						<Link to="/help" activeClassName="active" target="_blank"  className="list-group-item">
 							Help

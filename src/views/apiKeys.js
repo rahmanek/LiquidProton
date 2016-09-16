@@ -32,7 +32,6 @@ export default React.createClass({
 	},
 
 	render: function(){
-		console.log(this.state.keys);
 		return (
 			<div id="keys" className="margin-top-30">
 				<div className="row margin-top-15">
