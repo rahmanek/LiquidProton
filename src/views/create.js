@@ -8,14 +8,15 @@ export default React.createClass({
 	   	return {
 				keys: [],
 				selectedKey: "",
-				fingerprint:"fd92d30188397b3dd6236426554a83a8f324",
+				accessSecret:"",
 				items:[{
 					quantity:0,
 					description:"",
 					unitPrice:0,
 					total:0
 				}],
-				total:0
+				total:0,
+				cardNumber:[]
 		 	};
 	},
 	componentDidMount: function(){
@@ -66,26 +67,56 @@ export default React.createClass({
 		return;
 	},
 	sendReceipt: function(){
-
-		var submission = {
-			Key: this.state.selectedKey,
-			Link:{
-				fingerprint:this.state.fingerprint
-			},
-			Receipt:{
-				total: this.state.total,
-				items:[this.state.items]
-			}
-		}
-		$.post(config.apiHost + "/activity/reciept/create", submission)
-		.then(()=>{
-			this.props.notification.create({message:"Your receipt was sent."});
-			this.setState(this.getInitialState());
-			return;
-		}).catch( (err) => {
-			console.log(err);
-			this.props.notification.create({message:"There was an error creating your activity.", type:"danger"});
+		var authorization = "Basic " + btoa("AUB5jCkdq3b7kV9DTTdiQllORv5:" + this.props.user.accessSecret);
+		var postData = {
+		  "payment_method": {
+		    "credit_card": {
+		      "full_name": "Fred Joe",
+		      "number": this.state.cardNumber,
+		      "month": "3",
+		      "year": "2032"
+		    }
+		  }
+		};
+		$.ajax({
+		    url: 'https://core.spreedly.com/v1/payment_methods.json',
+		    type: 'post',
+		    data: postData,
+		    headers: {
+		        Authorization: authorization
+		    },
+		    dataType: 'json',
+		    success: (data)=> {
+				 var submission = {
+				 	Key: this.state.selectedKey,
+				 	Link:{
+				 		fingerprint:data.transaction.payment_method.fingerprint
+				 	},
+				 	Receipt:{
+				 		total: this.state.total,
+				 		items:[this.state.items]
+				 	}
+				 }
+				 $.post(config.apiHost + "/activity/reciept/create", submission)
+				 .then(()=>{
+				 	this.props.notification.create({message:"Your receipt was sent."});
+					var reInitialize = this.getInitialState();
+					delete reInitialize.keys;
+				 	this.setState(reInitialize);
+				 	return;
+				 }).catch( (err) => {
+				 	console.log(err);
+				 	this.props.notification.create({message:"There was an error creating your activity.", type:"danger"});
+				 });
+			 },
+			 error:(err)=>{
+				 console.log(err);
+				 this.props.notification.create({message:"There was an error creating your receipt.", type:"danger"});
+			 }
 		});
+
+
+
 	},
 	render: function (){
 		return (
@@ -104,9 +135,15 @@ export default React.createClass({
 					</div>
 				</div>
 				<div className="row margin-top-20">
-					<div className="col-xs-2">Fingerprint</div>
+					<div className="col-xs-2">Access Secret</div>
 					<div className="col-xs-8">
-						<span id="cardNumber">{this.state.fingerprint}</span>
+						<span id="cardNumber">{this.props.user.accessSecret}</span>
+					</div>
+				</div>
+				<div className="row margin-top-20">
+					<div className="col-xs-2">Card Number</div>
+					<div className="col-xs-8">
+						<input id="cardNumber" value={this.state.cardNumber} onChange={this.handleChange} className="form-control"/>
 					</div>
 				</div>
 				<div className="row margin-top-20">
