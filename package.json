@@ -5,13 +5,13 @@
   "main": "public/index.html",
   "engine": "node 6.2.0",
   "scripts": {
-    "start": "npm run deploy && node index.js",
+    "start": "node index.js",
     "dev": "cd public && concurrently \"gulp dev --watch\" \"lite-server index.js\"",
     "deploy": "gulp deploy",
     "view": "npm run deploy && cd builds/web && http-server -o",
     "lint": "eslint modules/*.js",
     "test": "gulp dev --watch",
-    "postinstall": "gulp bower"
+    "postinstall": "npm run deploy && gulp bower"
   },
   "author": "Ebad Rahman <rahmanek@gmail.com>",
   "license": "ISC",
