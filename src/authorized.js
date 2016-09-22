@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import SideMenu from './components/SideMenu.js'
+import SideMenu from './components/sideMenu.js'
 import User from './classes/User.js'
 import { browserHistory } from 'react-router'
 import config from '../config.js'
