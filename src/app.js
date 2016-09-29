@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 import Header from './components/header.js'
 import Notifications from './components/notifications.js'
 import jQuery from 'jquery'
+import { getQueryVariable } from './utilities.js'
 window.$ = window.jQuery = jQuery;
 require('bootstrap/js/alert');
 
@@ -35,6 +36,13 @@ export default React.createClass({
 			if (typeof nextProps.location.query.message != "undefined") notifications.push({message:nextProps.location.query.message});
 			this.setState({notifications:notifications});
 		}
+		return;
+	},
+	componentDidMount: function(){
+		if (typeof getQueryVariable("message") == "undefined") return;
+		var notifications = this.state.notifications;
+		notifications.push({message:getQueryVariable("message").split("+").join(" ")});
+		this.setState({notifications:notifications});
 		return;
 	},
 	render: function (){
