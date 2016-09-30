@@ -10,12 +10,12 @@ export default React.createClass({
 				selectedKey: "",
 				accessSecret:"",
 				items:[[{
-					quantity:0,
+					quantity:"",
 					description:"",
-					unitPrice:0,
-					total:0
+					unitPrice:"",
+					total:""
 				}]],
-				total:0,
+				total:"",
 				cardNumber:[]
 		 	};
 	},
@@ -51,10 +51,10 @@ export default React.createClass({
 	addItem: function(i){
 		var items = this.state.items;
 		items[i].push({
-			quantity:0,
+			quantity:"",
 			description:"",
-			unitPrice:0,
-			total:0,
+			unitPrice:"",
+			total:"",
 			fingerprint:""
 		});
 		this.setState({items:items});
@@ -63,10 +63,10 @@ export default React.createClass({
 	addSection: function(){
 		var items = this.state.items;
 		items.push([{
-			quantity:0,
+			quantity:"",
 			description:"",
-			unitPrice:0,
-			total:0,
+			unitPrice:"",
+			total:"",
 			fingerprint:""
 		}]);
 		this.setState({items:items});
