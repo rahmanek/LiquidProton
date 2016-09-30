@@ -6,7 +6,7 @@
   "engine": "node 6.2.0",
   "scripts": {
     "start": "node index.js",
-    "dev": "cd public && concurrently \"gulp dev --watch\" \"lite-server index.js\"",
+    "dev": "cd public && concurrently \"gulp dev --watch\" \"lite-server\"",
     "deploy": "gulp deploy",
     "view": "npm run deploy && cd builds/web && http-server -o",
     "lint": "eslint modules/*.js",

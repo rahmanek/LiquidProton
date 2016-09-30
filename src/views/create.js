@@ -9,12 +9,12 @@ export default React.createClass({
 				keys: [],
 				selectedKey: "",
 				accessSecret:"",
-				items:[{
+				items:[[{
 					quantity:0,
 					description:"",
 					unitPrice:0,
 					total:0
-				}],
+				}]],
 				total:0,
 				cardNumber:[]
 		 	};
@@ -42,15 +42,15 @@ export default React.createClass({
 		this.setState(changeVar);
 		return;
 	},
-	removeItem: function(nIndex){
+	removeItem: function(i,j){
 		var items = this.state.items;
-		items.splice(nIndex,1);
+		items[i].splice(j,1);
 		this.setState({items:items});
 		return;
 	},
-	addItem: function(){
+	addItem: function(i){
 		var items = this.state.items;
-		items.push({
+		items[i].push({
 			quantity:0,
 			description:"",
 			unitPrice:0,
@@ -60,9 +60,27 @@ export default React.createClass({
 		this.setState({items:items});
 		return;
 	},
-	handleItems: function(event, itemIndex, type){
+	addSection: function(){
 		var items = this.state.items;
-		items[itemIndex][type] = event.target.value;
+		items.push([{
+			quantity:0,
+			description:"",
+			unitPrice:0,
+			total:0,
+			fingerprint:""
+		}]);
+		this.setState({items:items});
+		return;
+	},
+	removeSection: function(i){
+		var items = this.state.items;
+		items.splice(i,1);
+		this.setState({items:items});
+		return;
+	},
+	handleItems: function(event, i, j, type){
+		var items = this.state.items;
+		items[i][j][type] = event.target.value;
 		this.setState({items:items});
 		return;
 	},
@@ -94,7 +112,7 @@ export default React.createClass({
 				 	},
 				 	Receipt:{
 				 		total: this.state.total,
-				 		items:[this.state.items]
+				 		items: this.state.items
 				 	}
 				 }
 				 $.post(config.apiHost + "/activity/reciept/create", submission)
@@ -153,32 +171,47 @@ export default React.createClass({
 					<div className="col-xs-2">Item Total</div>
 				</div>
 				{
-					this.state.items.map((item, i)=>{
-						return(
-							<div key={i} className="row margin-top-20">
-								<div className="col-xs-2"><input value={item.quantity} onChange={(e)=>this.handleItems(e,i,"quantity")} className="form-control"/></div>
-								<div className="col-xs-3"><input value={item.description} onChange={(e)=>this.handleItems(e,i,"description")} className="form-control"/></div>
-								<div className="col-xs-2"><input value={item.unitPrice} onChange={(e)=>this.handleItems(e,i,"unitPrice")} className="form-control"/></div>
-								<div className="col-xs-2"><input value={item.total} onChange={(e)=>this.handleItems(e,i,"total")} className="form-control"/></div>
-								<div className="col-xs-3" onClick={()=>this.removeItem(i)}><button className="btn btn-secondary">Remove</button></div>
+					this.state.items.map((itemGroup, i)=>{
+						return (
+							<div key={i} className="border-top padding-top-10 padding-bottom-10">
+								{
+									itemGroup.map((item,j)=>{
+										return(
+											<div key={j} className="row margin-top-20">
+												<div className="col-xs-2"><input value={item.quantity} onChange={(e)=>this.handleItems(e,i,j,"quantity")} className="form-control"/></div>
+												<div className="col-xs-3"><input value={item.description} onChange={(e)=>this.handleItems(e,i,j,"description")} className="form-control"/></div>
+												<div className="col-xs-2"><input value={item.unitPrice} onChange={(e)=>this.handleItems(e,i,j,"unitPrice")} className="form-control"/></div>
+												<div className="col-xs-2"><input value={item.total} onChange={(e)=>this.handleItems(e,i,j,"total")} className="form-control"/></div>
+												<div className="col-xs-3" onClick={()=>this.removeItem(i,j)}><button className="btn btn-secondary">Remove Item</button></div>
+											</div>
+										);
+									})
+								}
+								<div className="row margin-top-20">
+									<div className="col-xs-2">
+										<div onClick={()=>this.addItem(i)}><button className="btn btn-primary">Add Item</button></div>
+									</div>
+									<div className="col-xs-2">
+										<div onClick={()=>this.removeSection(i)}><button className="btn btn-secondary">Remove Section</button></div>
+									</div>
+								</div>
 							</div>
 						)
 					})
 				}
-				<div className="row">
-					<div className="col-xs-1 col-xs-offset-9">
-						<div onClick={this.addItem} className="margin-top-20"><button className="btn btn-primary">Add</button></div>
-					</div>
-				</div>
+
 				<div className="row margin-top-20">
 					<div className="col-xs-2 col-xs-offset-5 text-right">Total</div>
 					<div className="col-xs-2">
 						<input id="total" value={this.state.total} onChange={this.handleChange} className="form-control"/>
 					</div>
 				</div>
-				<div className="row">
-					<div className="col-xs-2 col-xs-offset-5">
-						<div onClick={this.sendReceipt} className="margin-top-20 col-xs-12"><button className="btn btn-primary">Send</button></div>
+				<div className="row margin-top-20">
+					<div className="col-xs-2 col-xs-offset-7">
+						<div onClick={this.sendReceipt}><button className="btn btn-primary">Send</button></div>
+					</div>
+					<div className="col-xs-2">
+						<div onClick={this.addSection}><button className="btn btn-primary">Add Section</button></div>
 					</div>
 				</div>
 
