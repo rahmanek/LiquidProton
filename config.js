@@ -1,11 +1,15 @@
 
+
+var nodeEnv = "production"
+
 export default {
+	nodeEnv: nodeEnv,
 	apiHost: (function(){
-		if(process.env.NODE_ENV == "production") return "http://apitest.flectino.com";
+		if(nodeEnv == "production") return "http://apitest.flectino.com";
 		else return "http://localhost:3010";
 	}()),
 	webHost: (function(){
-		if(process.env.NODE_ENV == "production") return "http://webtest.flectino.com";
+		if(nodeEnv == "production") return "http://webtest.flectino.com";
 		else return "http://localhost:3000";
 	}()),
 	gatewayKey: "AUB5jCkdq3b7kV9DTTdiQllORv5"
