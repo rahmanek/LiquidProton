@@ -1,8 +1,12 @@
 
 export default {
-	// apiHost: "http://api.flectino.com",
-	apiHost: "http://localhost:3010",
-	webHost: "http://localhost:3002",
-	// webHost: "http://www.flectino.com",
+	apiHost: (function(){
+		if(process.env.NODE_ENV == "production") return "http://apitest.flectino.com";
+		else return "http://localhost:3010";
+	}()),
+	webHost: (function(){
+		if(process.env.NODE_ENV == "production") return "http://webtest.flectino.com";
+		else return "http://localhost:3000";
+	}()),
 	gatewayKey: "AUB5jCkdq3b7kV9DTTdiQllORv5"
 }
