@@ -1,7 +1,15 @@
 var express = require('express');
 var app = express();
-var port = process.env.PORT || 3001;
+var port = process.env.PORT || 3000;
 var path = require('path');
+
+app.get('/', function (req, res) {
+  res.sendFile(path.resolve(__dirname + '/public/creative/index.html'));
+});
+
+app.get('/retailer', function (req, res) {
+  res.sendFile(path.resolve(__dirname + '/public/creative/customer.html'));
+});
 
 app.use(express.static(__dirname + '/public'));
 

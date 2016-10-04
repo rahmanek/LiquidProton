@@ -1,11 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import User from '../classes/User.js'
 export default React.createClass({
 	logout: function(){
 		User.deleteAuthorization();
-		window.location = "/home";
+		browserHistory.push("login");
 	},
 	render: function (){
 		var frag = window.location.hash.split("?")[0];
@@ -14,7 +14,7 @@ export default React.createClass({
 			<div id="sidenav" className="margin-top-30">
 				<div className="list-group">
 					<div id="linkBox" className="list-group">
-						<Link to="/" activeClassName="active" className={"list-group-item" + ((isAgent)?" display-none":"")}>
+						<Link to="activities" activeClassName="active" className={"list-group-item" + ((isAgent)?" display-none":"")}>
 							Activity
 						</Link>
 						<Link to="/links" activeClassName="active"  className={"list-group-item" + ((isAgent)?" display-none":"")}>

@@ -13,10 +13,24 @@ export default React.createClass({
 			year: "",
 			givenName:"",
 			surName:"",
-			processingCard: false
+			processingCard: false,
+			monthIsValid: false,
+			yearIsValid: false
 		};
 	},
 	handleChange: function(event) {
+		var changeVar = {};
+		if(event.target.id == "month" && event.target.value > 0 && event.target.value <= 12) changeVar.monthIsValid = true;
+		else if(event.target.id == "month") changeVar.monthIsValid = false;
+
+		if(event.target.id == "year" && event.target.value >= new Date().getFullYear()) changeVar.yearIsValid = true;
+		else if(event.target.id == "year") changeVar.yearIsValid = false;
+
+		changeVar[event.target.id] = event.target.value;
+		this.setState(changeVar);
+		return;
+	},
+	handleMonth: function(event) {
 		var changeVar = {};
 		changeVar[event.target.id] = event.target.value;
 		this.setState(changeVar);
@@ -86,17 +100,18 @@ export default React.createClass({
 	},
 
 	render: function(){
+		console.log(this.state);
 		return (
 			<div id="cardForm">
 				<input type="hidden" name="payment_method_token" id="payment_method_token"/>
 				<div className="row padding-left-15 padding-right-15">
 					<div className="col-xs-6 form-box">
 						<div className="cursor-default">First Name</div>
-						<input className="col-xs-12 border-none margin-top-5" value={this.state.givenName} onChange={this.handleChange} type="text" id="givenName" name="full_name" placeholder="Cardholder first name here"/>
+						<input className="col-xs-12 border-none margin-top-5" value={this.state.givenName} onChange={this.handleChange} type="text" id="givenName" name="full_name" placeholder="First name here"/>
 					</div>
 					<div className="col-xs-6 form-box">
 						<div className="cursor-default">Last Name</div>
-						<input className="col-xs-12 border-none margin-top-5" value={this.state.surName} onChange={this.handleChange} type="text"  id="surName" name="full_name" placeholder="Cardholder last name here"/>
+						<input className="col-xs-12 border-none margin-top-5" value={this.state.surName} onChange={this.handleChange} type="text"  id="surName" name="full_name" placeholder="Last name here"/>
 					</div>
 				</div>
 				<div className="row padding-left-15 padding-right-15">
@@ -130,14 +145,18 @@ export default React.createClass({
 					<div className="col-xs-6 form-box">
 						<div>
 							<span className="cursor-default">Expiration</span>
-							<i className="fa fa-times text-danger font-size-18 float-right"/>
+							{
+								(this.state.monthIsValid  && this.state.yearIsValid)
+									?(<i className="fa fa-check-circle text-success font-size-18 float-right"/>)
+									:(<i className="fa fa-times text-danger font-size-18 float-right"/>)
+							}
 						</div>
 						<div className="col-xs-12 margin-top-5 text-right">
-							<input className="col-xs-3 border-none" value={this.state.month} onChange={this.handleChange} type="text" id="month" name="month" maxLength="2" placeholder="MM"/>
+							<input className="col-xs-3 border-none" value={this.state.month} onChange={this.handleChange} min="1" max="12" type="number" id="month" name="month" maxLength="2" placeholder="MM"/>
 							<div className="col-xs-1">
 								<span>/</span>
 							</div>
-							<input className="col-xs-6 border-none" value={this.state.year} onChange={this.handleChange} type="text" id="year" name="year" maxLength="4" placeholder="YYYY"/>
+							<input className="col-xs-6 border-none" value={this.state.year} onChange={this.handleChange} min="2016" type="number"  id="year" name="year" maxLength="4" placeholder="YYYY"/>
 						</div>
 					</div>
 				</div>

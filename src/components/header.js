@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import config from '../../config.js'
 import User from '../classes/User.js'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 
 import jQuery from 'jquery'
 window.$ = window.jQuery = jQuery;
@@ -22,7 +22,7 @@ export default React.createClass({
 		$.get(config.apiHost + "/user/authenticateRandom")
 		.then((data)=>{
 			User.setAuthorization(data.authorization);
-			window.location = "/";
+			 browserHistory.push("activities");
 		}).catch( (err) => {
 			this.props.notification.create({message:"A random user could not be logged in.",type:"danger"});
 		});
@@ -31,7 +31,7 @@ export default React.createClass({
 		$.get(config.apiHost + "/user/authenticateRandomAgent")
 		.then((data)=>{
 			User.setAuthorization(data.authorization);
-			window.location = "/apiKeys";
+			browserHistory.push("apiKeys");
 		}).catch( (err) => {
 			this.props.notification.create({message:"A random agent could not be logged in.",type:"danger"});
 		});
@@ -48,7 +48,7 @@ export default React.createClass({
 										<span className="dropdown-toggle font-size-28">Flectino </span><span className="font-size-12"><i className="fa fa-caret-down"></i></span>
 									</a>
 									<ul className="dropdown-menu">
-										<li><Link to="/home">Home</Link></li>
+										<li><Link to="/login">Login</Link></li>
 										<li role="separator" className="divider"></li>
 										<li><a href="javascript:" onClick={this.loginRandom}>Login Random User</a></li>
 										<li><a href="javascript:" onClick={this.loginRandomAgent}>Login Random Agent</a></li>

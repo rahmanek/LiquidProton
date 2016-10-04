@@ -12,7 +12,7 @@ export default React.createClass({
 		}
 	},
 	componentWillMount: function(){
-		if(User.getAuthorization() === null ) browserHistory.push("home");
+		if(User.getAuthorization() === null ) browserHistory.push("login");
 	},
 
 	componentDidMount: function(){
@@ -23,7 +23,7 @@ export default React.createClass({
 		.then((data)=>{
 			this.setState({user:data});
 		}).fail(function(err){
-			browserHistory.push("home");
+			browserHistory.push("login");
 		});
 	},
 

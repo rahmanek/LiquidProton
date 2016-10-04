@@ -15,9 +15,6 @@ export default React.createClass({
 				password: ""
 		 	};
 	},
-	toggleAuth: function(){
-		this.setState({login:!this.state.login});
-	},
 	authenticate:function(){
 		var postData = {
 			email:this.state.email,
@@ -26,7 +23,7 @@ export default React.createClass({
 		$.post(config.apiHost + "/user/authenticate", postData)
 		.then((data)=>{
 			User.setAuthorization(data.authorization);
-			window.location = "/";
+			browserHistory.push("activities")
 		}).catch((err) => {
 			this.props.notification.create({message:"The email or password is incorrect, please try again.",type:"danger"});
 		});
@@ -40,13 +37,8 @@ export default React.createClass({
 		return (
 			<div id="home" className="margin-top-30 margin-bottom-30">
 				<div className="container">
-					<div className="row">
-						<div className="col-xs-8">
-							<div className="panel panel-default">
-								Welcome!<br/><br/>This will be an awesome app someday...
-							</div>
-						</div>
-						<div className="col-xs-4">
+					<div className="row margin-top-50">
+						<div className="col-xs-4 col-xs-offset-4">
 							<div id="authBox" className="panel panel-default">
 								<div className="font-size-20  primary-color">Login</div>
 								<div className="margin-top-15">Email</div>

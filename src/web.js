@@ -8,7 +8,7 @@ import AddLink from './views/addLink.js'
 import Settings from './views/settings.js'
 import Register from './views/register.js'
 import Help from './views/help.js'
-import Home from './views/home.js'
+import Login from './views/login.js'
 import Create from './views/create.js'
 import ApiKeys from './views/apiKeys.js'
 import App from './app.js'
@@ -17,11 +17,11 @@ import Authorized from './authorized.js'
 render((
 	<Router history={browserHistory}>
 		<Route component={App}>
-			<Route path="/home" component={Home}/>
+			<Route path="/login" component={Login}/>
 			<Route path="/help" component={Help}/>
 			<Route path="/register" component={Register}/>
 			<Route component={Authorized}>
-				<Route path="/" component={Activities}/>
+				<Route path="/activities" component={Activities}/>
 				<Route path="/activity" component={Activity}/>
 				<Route path="/settings" component={Settings}/>
 				<Route path="/links" component={Links}/>

@@ -26,7 +26,7 @@ export default React.createClass({
 		$.post(config.apiHost + "/register", postData)
 		.then((data)=>{
 			browserHistory.push({
-				pathname:"home",
+				pathname:"login",
 				query:{
 					message:"Thank you, you're almost finished!  Please check for a message sent to your email to finalize the signup."
 				}
@@ -69,8 +69,8 @@ export default React.createClass({
 										<input className="col-xs-12 border-none margin-top-5" value={this.state.password} onChange={this.handleChange} type="password"  id="password" placeholder="Password Here"/>
 								</div>
 							</div>
-							<div className="row margin-top-25 margin-bottom-15">
-								<button className="btn col-xs-4 col-xs-offset-4" id="submit-button" onClick={()=>this.setState({processSignal:true})}>Register</button>
+							<div className="row margin-top-25 margin-bottom-15 text-center">
+								<button className="btn btn-secondary btn-lg" id="submit-button" onClick={()=>this.setState({processSignal:true})}>Register</button>
 							</div>
 						</div>
 				</div>
