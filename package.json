@@ -11,7 +11,7 @@
     "view": "npm run deploy && cd builds/web && http-server -o",
     "lint": "eslint modules/*.js",
     "test": "gulp dev --watch",
-    "postinstall": "npm run deploy && gulp bower"
+    "postinstall": "npm run deploy && gulp bower && cd public/creative && npm install"
   },
   "author": "Ebad Rahman <rahmanek@gmail.com>",
   "license": "ISC",

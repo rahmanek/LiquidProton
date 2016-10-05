@@ -10,7 +10,8 @@
   },
   "scripts":{
 	  "copy": "gulp copy",
-	  "dev": "gulp dev"
+	  "dev": "gulp dev",
+    "postinstall": "gulp" 
   },
   "devDependencies": {
     "bootstrap": "^3.3.7",
