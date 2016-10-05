@@ -21,7 +21,7 @@
     // "babelify": "^7.3.0",
     // "bootstrap": "^3.3.6",
     // "browserify": "^13.0.1",
-    // "chai": "^3.5.0",
+    "chai": "^3.5.0"
     // "concurrently": "^2.0.0",
     // "eslint": "3.2.2",
     // "gulp": "^3.9.1",
