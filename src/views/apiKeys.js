@@ -1,12 +1,8 @@
-import React from 'react'
-import { render } from 'react-dom'
+import { React, ReactRouter, $ } from '../cdn'
 import config from '../../config.js'
 import User from '../classes/User.js'
-import { Link } from 'react-router'
 
-import jQuery from 'jquery'
-window.$ = window.jQuery = jQuery;
-require('bootstrap/js/modal');
+var Link = ReactRouter.Link;
 
 export default React.createClass({
 	getInitialState: function() {
@@ -36,33 +32,29 @@ export default React.createClass({
 			<div id="keys" className="margin-top-30">
 				<div className="row margin-top-15">
 					<div className="col-xs-12">
-						<div className="list-group">
-							<div className="list-group-item">
-								<div className="row">
-									<div className="col-xs-3 bold">
-										Date Added
-									</div>
-									<div className="col-xs-3 bold">
-										Number of Requests
-									</div>
-									<div className="col-xs-6 bold">
-										API Token
-									</div>
-								</div>
-							</div>
+						<div className="list-group margin-bottom-0">
 							{
 								this.state.keys.map((key, i)=>{
 									return (
 										<div className="list-group-item" key={i}>
 											<div className="row">
-												<div className="col-xs-3">
-													{key.formattedDate}
+												<div className="col-xs-6 bold">{key.name}</div>
+												<div className="col-xs-6 text-right">Date Added: {key.formattedDate}</div>
+											</div>
+											<div className="row margin-top-15">
+												<div className="col-xs-12">
+													Address: {key.line1}, {key.city}, {key.state} {key.zip}
 												</div>
-												<div className="col-xs-3">
-													{key.requests}
+												<div className="col-xs-12">
+													URL: {key.url}
 												</div>
-												<div className="col-xs-6">
-													{key.token}
+											</div>
+											<div className="row margin-top-15">
+												<div className="col-xs-12">
+													Key: {key.token}
+												</div>
+												<div className="col-xs-12">
+													Request Count: {key.requests}
 												</div>
 											</div>
 										</div>

@@ -1,8 +1,10 @@
-import React from 'react'
-import { render } from 'react-dom'
+import { React, ReactRouter } from '../cdn'
 import config from '../../config.js'
 import User from '../classes/User.js'
-import { Link, browserHistory } from 'react-router'
+
+var Link = ReactRouter.Link;
+var browserHistory = ReactRouter.browserHistory;
+
 export default React.createClass({
 	getInitialState:function(){
 		return {

@@ -1,5 +1,4 @@
-import React from 'react'
-import { render } from 'react-dom'
+import { React } from '../cdn'
 import config from '../../config.js'
 import User from '../classes/User.js'
 

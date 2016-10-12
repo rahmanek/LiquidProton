@@ -1,11 +1,7 @@
-import React from 'react'
-import { render } from 'react-dom'
+import { React } from './cdn'
 import Header from './components/header.js'
 import Notifications from './components/notifications.js'
-import jQuery from 'jquery'
 import { getQueryVariable } from './utilities.js'
-window.$ = window.jQuery = jQuery;
-require('bootstrap/js/alert');
 
 export default React.createClass({
 	getInitialState: function() {

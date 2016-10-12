@@ -1,9 +1,4 @@
-import React from 'react'
-import { render } from 'react-dom'
-
-import jQuery from 'jquery'
-window.$ = window.jQuery = jQuery;
-require('bootstrap/js/dropdown');
+import { React } from '../cdn'
 
 export default React.createClass({
 	render: function (){

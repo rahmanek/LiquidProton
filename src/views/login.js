@@ -1,12 +1,10 @@
-import React from 'react'
-import { render } from 'react-dom'
+import { React, ReactRouter } from '../cdn'
 import Header from '../components/header.js'
 import config from '../../config.js'
 import User from '../classes/User.js'
-import jQuery from 'jquery'
-window.$ = window.jQuery = jQuery;
-import { browserHistory, Link } from 'react-router'
-require('bootstrap/js/alert');
+
+var Link = ReactRouter.Link;
+var browserHistory = ReactRouter.browserHistory;
 
 export default React.createClass({
 	getInitialState: function() {
@@ -38,7 +36,7 @@ export default React.createClass({
 			<div id="home" className="margin-top-30 margin-bottom-30">
 				<div className="container">
 					<div className="row margin-top-50">
-						<div className="col-xs-4 col-xs-offset-4">
+						<div className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
 							<div id="authBox" className="panel panel-default">
 								<div className="font-size-20  primary-color">Login</div>
 								<div className="margin-top-15">Email</div>

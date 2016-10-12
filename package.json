@@ -9,9 +9,9 @@
     "dev": "cd public && concurrently \"gulp dev --watch\" \"lite-server\"",
     "deploy": "gulp deploy",
     "view": "npm run deploy && cd builds/web && http-server -o",
-    "lint": "eslint modules/*.js",
+    "eslint": "eslint src/**",
     "test": "gulp dev --watch",
-    "postinstall": "npm run deploy && gulp bower && cd public/creative && npm install"
+    "postinstall": "npm run deploy && cd public/creative && npm install"
   },
   "author": "Ebad Rahman <rahmanek@gmail.com>",
   "license": "ISC",

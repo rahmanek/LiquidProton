@@ -1,7 +1,9 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { Link, browserHistory } from 'react-router'
+import { React, ReactRouter } from '../cdn'
 import User from '../classes/User.js'
+
+var Link = ReactRouter.Link;
+var browserHistory = ReactRouter.browserHistory;
+
 export default React.createClass({
 	logout: function(){
 		User.deleteAuthorization();

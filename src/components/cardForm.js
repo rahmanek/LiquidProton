@@ -1,8 +1,8 @@
-import React from 'react'
-import { render } from 'react-dom'
+import { React, ReactRouter } from '../cdn'
 import config from '../../config.js'
 import User from '../classes/User.js'
-import { browserHistory } from 'react-router'
+
+var browserHistory = ReactRouter.browserHistory;
 
 export default React.createClass({
 	getInitialState: function() {
@@ -146,17 +146,17 @@ export default React.createClass({
 						<div>
 							<span className="cursor-default">Expiration</span>
 							{
-								(this.state.monthIsValid  && this.state.yearIsValid)
+								(this.state.monthIsValid && this.state.yearIsValid)
 									?(<i className="fa fa-check-circle text-success font-size-18 float-right"/>)
 									:(<i className="fa fa-times text-danger font-size-18 float-right"/>)
 							}
 						</div>
 						<div className="col-xs-12 margin-top-5 text-right">
-							<input className="col-xs-3 border-none" value={this.state.month} onChange={this.handleChange} min="1" max="12" type="number" id="month" name="month" maxLength="2" placeholder="MM"/>
-							<div className="col-xs-1">
+							<input className="col-xs-5 col-sm-3 border-none" value={this.state.month} onChange={this.handleChange} min="1" max="12" type="number" id="month" name="month" maxLength="2" placeholder="MM"/>
+							<div className="col-xs-1 col-sm-1">
 								<span>/</span>
 							</div>
-							<input className="col-xs-6 border-none" value={this.state.year} onChange={this.handleChange} min="2016" type="number"  id="year" name="year" maxLength="4" placeholder="YYYY"/>
+							<input className="col-xs-3 col-sm-6 border-none" value={this.state.year} onChange={this.handleChange} min="2016" type="number"  id="year" name="year" maxLength="4" placeholder="YYYY"/>
 						</div>
 					</div>
 				</div>

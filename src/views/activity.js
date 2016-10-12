@@ -1,5 +1,4 @@
-import React from 'react'
-import { render } from 'react-dom'
+import { React } from '../cdn'
 import config from '../../config.js'
 import User from '../classes/User.js'
 
@@ -38,7 +37,7 @@ export default React.createClass({
 					</div>
 				</div>
 				<div id="receiptInfo" className="row margin-top-15 margin-bottom-15">
-					<div className="col-xs-7">
+					<div className="col-xs-12 col-sm-7">
 						<table className="table margin-top-10"><tbody>
 							<tr><td>Phone:</td><td>{activity.Key.phone.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")}</td></tr>
 							<tr><td>Address:</td><td>{activity.Key.line1}<br/>{activity.Key.city}, {activity.Key.state} {activity.Key.zip}</td></tr>
@@ -47,8 +46,8 @@ export default React.createClass({
 
 						</tbody></table>
      				</div>
-					<div className="col-xs-5">
-					   <div className="margin-top-10">Charged to credit card ending in {activity.Link.lastFour}</div>
+					<div className="hidden-xs col-sm-5">
+					   <div className="margin-top-10">Charged to CC-{activity.Link.lastFour}</div>
 						<div className="margin-top-25 panel panel-primary text-center">
 							<div className="panel-heading text-center">
 								Total
@@ -56,6 +55,13 @@ export default React.createClass({
 							<div className="panel-body text-center">
 								<span>${activity.Receipt.total}</span>
 							</div>
+						</div>
+					</div>
+					<div className="col-xs-12 hidden-sm hidden-md hidden-lg text-center">
+						<div className="margin-top-10">Charged CC-{activity.Link.lastFour}</div>
+						<div className="margin-top-10">
+								<span className="color-secondary">Total: </span>
+								<span className="bold">${activity.Receipt.total}</span>
 						</div>
 					</div>
 				</div>

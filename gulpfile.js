@@ -30,9 +30,16 @@ if (argv.watch) watch = true;
 // }
 
 var styles = function(){
-	return gulp.src(['./styles/**/*.scss','!./styles/common.scss'])
-   .pipe(sass().on('error', sass.logError))
+	var cssMini = gulp.src(['./styles/**/*.scss','!./styles/common.scss'])
+   .pipe(sass({outputStyle:'compressed'}).on('error', sass.logError))
+	.pipe(rename("app.min.css"))
    .pipe(gulp.dest('./public/css'));
+
+	var css = gulp.src(['./styles/**/*.scss','!./styles/common.scss'])
+	.pipe(sass().on('error', sass.logError))
+	.pipe(gulp.dest('./public/css'));
+
+	return merge(css, cssMini);
 }
 
 var jsBundle = function (prod){
@@ -66,7 +73,7 @@ var jsBundle = function (prod){
 var buildProject = function (prod) {
 	jsStream = jsBundle(prod);
 	// copyStream = copy(prod);
-	styleStream = styles(prod);
+	styleStream = styles();
 
 	if(watch) {
 		console.log("Watching...")

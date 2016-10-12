@@ -1,10 +1,5 @@
 
-$primary-color: #00A08A;
-$secondary-color: #FF6A00;
-$gray-light:#F0F0F0;
-$gray-light-2:#DDDDDD;
-$header-height:60px;
-
+@import 'variables';
 @import 'generic';
 @import 'notifications';
 @import 'sideNav';
@@ -16,6 +11,8 @@ $header-height:60px;
 @import 'links';
 @import 'settings';
 @import 'create';
+@import 'verified';
+@import 'keys';
 
 body, html {
    height:100%;
@@ -56,7 +53,7 @@ a {
    color: $primary-color;
 }
 
-.secondary-color{
+.color-secondary{
    color: $secondary-color;
 }
 
@@ -223,10 +220,4 @@ a {
       border-bottom: 1px solid $gray-light-2;
    }
 
-}
-
-#create{
-   background-color: white;
-   padding: 30px 30px 10px 30px;
-   border: 1px solid $gray-light-2;
 }

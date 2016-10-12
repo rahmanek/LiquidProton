@@ -1,13 +1,9 @@
-import React from 'react'
-import { render } from 'react-dom'
+import { React, ReactRouter, $ } from '../cdn'
 import config from '../../config.js'
 import User from '../classes/User.js'
-import { Link } from 'react-router'
 import Modal from '../components/modal.js'
 
-import jQuery from 'jquery'
-window.$ = window.jQuery = jQuery;
-require('bootstrap/js/modal');
+var Link = ReactRouter.Link
 
 export default React.createClass({
 	getInitialState: function() {
@@ -41,7 +37,7 @@ export default React.createClass({
 		$.post(config.apiHost + "/link/creditCard/delete", postData)
 		.then((data)=>{
 
-			jQuery('#removeModal' + linkId).modal('hide');
+			$('#removeModal' + linkId).modal('hide');
 
 			var links = this.state.links;
 			links.splice(linkId,1);
@@ -50,7 +46,7 @@ export default React.createClass({
 			});
 			return;
 		}).catch( (err) => {
-			jQuery('#removeModal' + linkId).modal('hide');
+			$('#removeModal' + linkId).modal('hide');
 			this.props.motification.create({message:"There was an error deleting the link.", type:"danger"});
 			return;
 		});
@@ -71,7 +67,7 @@ export default React.createClass({
 				</div>
 				<div className="row margin-top-15">
 					<div className="col-xs-12">
-						<div className="list-group">
+						<div className="list-group margin-bottom-0">
 						<div className="list-group-item">
 							<div className="row">
 								<div className="col-xs-3 bold">
