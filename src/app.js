@@ -1,7 +1,10 @@
 import { React } from './cdn'
 import Header from './components/header.js'
 import Notifications from './components/notifications.js'
+import Navigation from './components/navigation.js'
 import { getQueryVariable } from './utilities.js'
+import User from './classes/User.js'
+import config from '../config.js'
 
 export default React.createClass({
 	getInitialState: function() {
@@ -9,6 +12,9 @@ export default React.createClass({
 			notifications:[],
 			user:{}
 		}
+	},
+	modifyUser: function(user){
+		this.setState({user:user});
 	},
 	createNotification: function(notification){
 		var notifications = this.state.notifications;
@@ -35,10 +41,20 @@ export default React.createClass({
 		return;
 	},
 	componentDidMount: function(){
-		if (typeof getQueryVariable("message") == "undefined") return;
 		var notifications = this.state.notifications;
-		notifications.push({message:getQueryVariable("message").split("+").join(" ")});
-		this.setState({notifications:notifications});
+		if (typeof getQueryVariable("message") != "undefined") notifications.push({message:getQueryVariable("message").split("+").join(" ")});
+
+		var postData = {
+			authorization:User.getAuthorization(),
+		}
+		if(typeof postData.authorization !== "undefined" || postData.authorization !== null){
+			$.post(config.apiHost + "/user/retrieve", postData)
+			.then((data)=>{
+				this.setState({user:data,notifications:notifications});
+			}).fail(function(err){
+				browserHistory.push("login");
+			});
+		}
 		return;
 	},
 	render: function (){
@@ -48,12 +64,13 @@ export default React.createClass({
 				remove: this.removeNotification,
 				retrieve: this.retrieveNotifications
 			},
-			user:this.state.user
+			user:this.state.user,
+			modifyUser:this.modifyUser
 		}
 		return (
          <div className="height-100">
 				<Notifications notification={pass.notification}/>
-            <Header notification={pass.notification}/>
+            <Header notification={pass.notification} user={pass.user}/>
 				<div className="page-body">
 					{React.cloneElement(this.props.children, pass)}
 				</div>

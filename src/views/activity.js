@@ -48,20 +48,16 @@ export default React.createClass({
      				</div>
 					<div className="hidden-xs col-sm-5">
 					   <div className="margin-top-10">Charged to CC-{activity.Link.lastFour}</div>
-						<div className="margin-top-25 panel panel-primary text-center">
-							<div className="panel-heading text-center">
-								Total
-							</div>
-							<div className="panel-body text-center">
-								<span>${activity.Receipt.total}</span>
-							</div>
+						<div className="card card-block margin-top-15 align-right">
+							<p className="card-text color-secondary">Total</p>
+							<h4 className="card-title">${activity.Receipt.total}</h4>
 						</div>
 					</div>
 					<div className="col-xs-12 hidden-sm hidden-md hidden-lg text-center">
 						<div className="margin-top-10">Charged CC-{activity.Link.lastFour}</div>
 						<div className="margin-top-10">
 								<span className="color-secondary">Total: </span>
-								<span className="bold">${activity.Receipt.total}</span>
+								<span className="bold align-right">${activity.Receipt.total}</span>
 						</div>
 					</div>
 				</div>

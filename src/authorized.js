@@ -16,15 +16,6 @@ export default React.createClass({
 	},
 
 	componentDidMount: function(){
-		var postData = {
-			authorization:User.getAuthorization(),
-		}
-		$.post(config.apiHost + "/user/retrieve", postData)
-		.then((data)=>{
-			this.setState({user:data});
-		}).fail(function(err){
-			browserHistory.push("login");
-		});
 	},
 
 	render: function (){
@@ -34,10 +25,7 @@ export default React.createClass({
       }
 		return (
          <div id="authorized" className="container height-100 padding-right-0 padding-left-0">
-            <div className="hidden-xs col-sm-3">
-               <SideMenu location={this.props.location} user={pass.user}/>
-            </div>
-            <div className="col-xs-12 col-sm-9 padding-right-0 padding-left-0 height-100 overflow-scroll-y">
+            <div className="col-xs-12 padding-right-0 padding-left-0 height-100 overflow-scroll-y">
                {React.cloneElement(this.props.children, pass)}
             </div>
          </div>

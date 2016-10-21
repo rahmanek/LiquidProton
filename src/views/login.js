@@ -2,6 +2,7 @@ import { React, ReactRouter } from '../cdn'
 import Header from '../components/header.js'
 import config from '../../config.js'
 import User from '../classes/User.js'
+import Footer from '../components/Footer.js'
 
 var Link = ReactRouter.Link;
 var browserHistory = ReactRouter.browserHistory;
@@ -33,24 +34,31 @@ export default React.createClass({
 	},
 	render: function (){
 		return (
-			<div id="home" className="margin-top-30 margin-bottom-30">
-				<div className="container">
-					<div className="row margin-top-50">
-						<div className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
-							<div id="authBox" className="panel panel-default">
-								<div className="font-size-20  primary-color">Login</div>
-								<div className="margin-top-15">Email</div>
-								<input id="email" onChange={this.handleChange} className="form-control margin-top-5"/>
-								<div className="margin-top-15">Password</div>
-								<input id="password" type="password" onChange={this.handleChange} className="form-control margin-top-5"/>
-								<button className="btn margin-top-10 margin-left-auto margin-right-25 display-block btn-primary" onClick={this.authenticate}>Login</button>
-								<Link to="register">
-									<div className="margin-top-10 text-black">Need to create an account?</div>
-								</Link>
+			<div>
+				<div id="login" className="margin-top-30">
+					<div className="container">
+						<div className="row margin-top-50">
+							<div className="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+								<div id="authBox" className="panel panel-default">
+									<div className="font-size-20  primary-color">Login</div>
+									<div className="margin-top-15">Email</div>
+									<input id="email" onChange={this.handleChange} className="form-control margin-top-5"/>
+									<div className="margin-top-15">Password</div>
+									<input id="password" type="password" onChange={this.handleChange} className="form-control margin-top-5"/>
+									<div className="margin-top-5">
+										<div className="inline-block margin-top-15">
+											<Link to="register" className="margin-top-5">
+												Need to create an account?
+											</Link>
+										</div>
+										<button className="btn margin-top-10 float-right display-block btn-primary" onClick={this.authenticate}>Login</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<Footer/>
 			</div>
 		);
 	}

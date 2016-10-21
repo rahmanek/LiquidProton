@@ -13,11 +13,14 @@
 @import 'create';
 @import 'verified';
 @import 'keys';
+@import 'navigation';
+@import 'login';
+@import 'footer';
 
 body, html {
    height:100%;
    width:100%;
-   background-color: $gray-light;
+   // background-color: $gray-light;
 }
 
 a {
