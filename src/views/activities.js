@@ -30,14 +30,13 @@ export default React.createClass({
 						var now = Date.now();
 						var preDate = new Date(date);
 						var diff = now - date;
-						diff = 94400000
 						var formattedDate ="";
 						if(diff > 86400000){
 							formattedDate = preDate.getMonth() + "/" + preDate.getDate() + "/" + preDate.getFullYear();
 						} else if (diff > 3600000){
 							formattedDate = preDate.toLocaleTimeString();
 						} else if (diff > 60000){
-							formattedDate = diff/60000 + " minutes ago";
+							formattedDate = parseInt(diff/60000) + " minutes ago";
 						} else {
 							formattedDate = "Less than a minute ago";
 						}
@@ -57,7 +56,7 @@ export default React.createClass({
 										<span>${activity.Receipt.total}</span>
 									</div>
 									<div className="col-xs-4 col-sm-2 nowrap text-right">
-         							<span>x-{activity.Link.lastFour}</span>
+         							<span>Phone -{activity.Link.number.substr(activity.Link.number.length - 4)}</span>
          						</div>
 								</div>
 							</div>

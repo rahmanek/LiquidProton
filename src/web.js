@@ -12,29 +12,36 @@ import Create from './views/create.js'
 import ApiKeys from './views/apiKeys.js'
 import Verified from './views/verified.js'
 import App from './app.js'
-import Authorized from './authorized.js'
+import config from '../config.js'
 
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var browserHistory = ReactRouter.browserHistory;
 
+
+// validate authentication for private routes
+const requireAuth = (nextState, replace) => {
+  // if (!auth.loggedIn()) {
+  //   replace({ pathname: '/login' })
+  // }
+}
+
+
 ReactDOM.render((
 	<Router history={browserHistory}>
-		<Route component={App}>
+		<Route component={App} auth={auth}>
 			<Route path="login" component={Login}/>
 			<Route path="logout" component={Logout}/>
 			<Route path="help" component={Help}/>
 			<Route path="register" component={Register}/>
 			<Route path="verified" component={Verified}/>
-			<Route component={Authorized}>
-				<Route path="activities" component={Activities}/>
-				<Route path="activity" component={Activity}/>
-				<Route path="settings" component={Settings}/>
-				{/* <Route path="links" component={Links}/> */}
-				<Route path="apiKeys" component={ApiKeys}/>
-				<Route path="links/add" component={AddLink}/>
-				<Route path="create" component={Create}/>
-			</Route>
+			<Route path="activities" component={Activities} onEnter={requireAuth}/>
+			<Route path="activity" component={Activity} onEnter={requireAuth}/>
+			<Route path="settings" component={Settings} onEnter={requireAuth}/>
+			{/* <Route path="links" component={Links} onEnter={requireAuth}/> */}
+			<Route path="apiKeys" component={ApiKeys} onEnter={requireAuth}/>
+			<Route path="links/add" component={AddLink} onEnter={requireAuth}/>
+			<Route path="create" component={Create} onEnter={requireAuth}/>
 		</Route>
 	</Router>
 ), document.getElementById('app'));

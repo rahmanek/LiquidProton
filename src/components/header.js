@@ -47,7 +47,13 @@ export default React.createClass({
 					agent:true,
 					public: false
 				},{
-					name: "Sign Out",
+					name: "Login",
+					link:"login",
+					user: false,
+					agent: false,
+					public: true
+				},{
+					name: "Logout",
 					link:"logout",
 					user: true,
 					agent: true,
@@ -84,9 +90,9 @@ export default React.createClass({
 		});
 	},
 	render: function (){
-		var type = this.props.user.type;
-		if (typeof type == "undefined") type = "public";
-		var isAgent = true;
+		var auth = this.props.auth;
+		var type = "public";
+		if(auth.loggedIn()) type = "user";
 		return (
 			<div id="header">
 				<nav className="navbar navbar-fixed-top">
@@ -95,23 +101,31 @@ export default React.createClass({
 					<ul className="nav navbar-nav hidden-sm-down float-xs-right">
 						{
 							this.state.navItems.map((item)=>{
-								if(item.name == "Dev"){
-									return(
-										<li className="nav-item dropdown">
-											<a href="javascript:" className="nav-link dropdown-toggle" data-toggle="dropdown" id="responsiveNavbarDropdown">{item.name}</a>
-											<div className="dropdown-menu">
-												<a className="dropdown-item" href="javascript:" onClick={this.loginRandom}>Login Random User</a>
-												<a className="dropdown-item" href="javascript:" onClick={this.loginRandomAgent}>Login Random Agent</a>
-											</div>
-										</li>
-									);
-								} else if (item[type]){
-									return (
-										<li className="nav-item">
-											<Link to={item.link} className="nav-link">{item.name}</Link>
-										</li>
-									);
-								} else return null;
+								if(item.name == "Dev") return(
+									<li className="nav-item dropdown">
+										<a href="javascript:" className="nav-link dropdown-toggle" data-toggle="dropdown" id="responsiveNavbarDropdown">{item.name}</a>
+										<div className="dropdown-menu">
+											<a className="dropdown-item" href="javascript:" onClick={this.loginRandom}>Login Random User</a>
+											<a className="dropdown-item" href="javascript:" onClick={this.loginRandomAgent}>Login Random Agent</a>
+										</div>
+									</li>
+								);
+								else if (item[type] && item.name == "Login") return(
+									<li className="nav-item">
+										<a href="javascript:" className="nav-link" onClick={()=>auth.lock.show()}>Login</a>
+									</li>
+								);
+								else if (item[type] && item.name == "Logout") return(
+									<li className="nav-item">
+										<a href="javascript:" className="nav-link" onClick={()=>auth.logout()}>Login</a>
+									</li>
+								);
+								else if (item[type]) return (
+									<li className="nav-item">
+										<Link to={item.link} className="nav-link">{item.name}</Link>
+									</li>
+								);
+								else return null;
 							})
 						}
 					</ul>

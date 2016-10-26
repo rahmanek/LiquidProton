@@ -11,20 +11,24 @@ export default React.createClass({
 
 		return (
 			<div id="footer">
-				{/* <div className="container">
+				<div className="container">
 					<div className="col-md-4">
-						Resources
-						<ul className="margin-top-10">
-							<li>Help</li>
-						</ul>
+						<div className="margin-bottom-10">Resources</div>
+						<div>For Customers</div>
+						<div>For Retailers</div>
+						<div>For Developers</div>
+						<div>Help</div>
 					</div>
 					<div className="col-md-4">
-						Contact
+						<div className="margin-bottom-10">Resources</div>
+						<div>About</div>
 					</div>
 					<div className="col-md-4">
-						Other
+						<div className="margin-bottom-10">Contact</div>
+						<div>Call: (888)930-2938</div>
+						<div>Email: info@hi.com</div>
 					</div>
-				</div> */}
+				</div>
 			</div>
 		);
 	}

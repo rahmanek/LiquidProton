@@ -9,12 +9,13 @@ var browserHistory = ReactRouter.browserHistory;
 
 export default React.createClass({
 	getInitialState: function() {
-	   	return {
-				email: "",
-				password: ""
-		 	};
+   	return {
+			email: "",
+			password: ""
+	 	};
 	},
 	authenticate:function(){
+
 		var postData = {
 			email:this.state.email,
 			password:this.state.password

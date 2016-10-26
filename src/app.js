@@ -41,6 +41,7 @@ export default React.createClass({
 		return;
 	},
 	componentDidMount: function(){
+
 		var notifications = this.state.notifications;
 		if (typeof getQueryVariable("message") != "undefined") notifications.push({message:getQueryVariable("message").split("+").join(" ")});
 
@@ -58,6 +59,7 @@ export default React.createClass({
 		return;
 	},
 	render: function (){
+		console.log(this.props);
 		var pass = {
 			notification:{
 				create: this.createNotification,
