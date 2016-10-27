@@ -1,10 +1,12 @@
-import { React } from './cdn'
+import { React, ReactRouter} from './cdn'
 import Header from './components/header.js'
 import Notifications from './components/notifications.js'
 import Navigation from './components/navigation.js'
 import { getQueryVariable } from './utilities.js'
 import User from './classes/User.js'
 import config from '../config.js'
+
+var browserHistory = ReactRouter.browserHistory;
 
 export default React.createClass({
 	getInitialState: function() {
@@ -59,7 +61,6 @@ export default React.createClass({
 		return;
 	},
 	render: function (){
-		console.log(this.props);
 		var pass = {
 			notification:{
 				create: this.createNotification,

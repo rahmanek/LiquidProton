@@ -92,7 +92,7 @@ export default React.createClass({
 	render: function (){
 		var auth = this.props.auth;
 		var type = "public";
-		if(auth.loggedIn()) type = "user";
+		// if(auth.loggedIn()) type = "user";
 		return (
 			<div id="header">
 				<nav className="navbar navbar-fixed-top">

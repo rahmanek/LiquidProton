@@ -36,9 +36,9 @@ export default React.createClass({
 	render: function (){
 		return (
 			<div>
-				<div id="login" className="margin-top-30">
+				<div id="login" className="view">
 					<div className="container">
-						<div className="row margin-top-50">
+						<div className="row">
 							<div className="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
 								<div id="authBox" className="panel panel-default">
 									<div className="font-size-20  primary-color">Login</div>

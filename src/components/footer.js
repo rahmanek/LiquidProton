@@ -17,11 +17,11 @@ export default React.createClass({
 						<div>For Customers</div>
 						<div>For Retailers</div>
 						<div>For Developers</div>
-						<div>Help</div>
+						<div className="margin-bottom-10">Help</div>
 					</div>
 					<div className="col-md-4">
-						<div className="margin-bottom-10">Resources</div>
-						<div>About</div>
+						{/* <div className="margin-bottom-10">Resources</div> */}
+						<div className="margin-bottom-10">About</div>
 					</div>
 					<div className="col-md-4">
 						<div className="margin-bottom-10">Contact</div>

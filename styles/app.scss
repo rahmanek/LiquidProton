@@ -20,7 +20,7 @@
 body, html {
    height:100%;
    width:100%;
-   // background-color: $gray-light;
+   background-color: $background-color;
 }
 
 a {
@@ -32,20 +32,26 @@ a {
 }
 
 .page-body{
-   padding-top: $header-height;
+   // padding-top: $header-height;
    height:100%;
+   background-color:$footer-color;
 }
 
-.views{
-   @media (min-width: 768px) {
-      margin: 30px 0 0 0;
-   }
+.crunch-view{
+   padding: $header-height 0 0 0;
+   background-color: white;
 }
 
-#authorized .views{
-   @media (min-width: 768px) {
-      margin: 30px 0 0 15px;
-   }
+.view{
+   padding: calc(#{$header-height} + 50px) 0 100px 0;
+   background-color: white;
+}
+
+.message{
+   color:$secondary-color;
+}
+.receipt{
+   color:$primary-color;
 }
 
 :focus{
