@@ -47,17 +47,6 @@ export default React.createClass({
 		var notifications = this.state.notifications;
 		if (typeof getQueryVariable("message") != "undefined") notifications.push({message:getQueryVariable("message").split("+").join(" ")});
 
-		var postData = {
-			authorization:User.getAuthorization(),
-		}
-		if(typeof postData.authorization !== "undefined" || postData.authorization !== null){
-			$.post(config.apiHost + "/user/retrieve", postData)
-			.then((data)=>{
-				this.setState({user:data,notifications:notifications});
-			}).fail(function(err){
-				browserHistory.push("login");
-			});
-		}
 		return;
 	},
 	render: function (){
@@ -67,13 +56,14 @@ export default React.createClass({
 				remove: this.removeNotification,
 				retrieve: this.retrieveNotifications
 			},
+			auth: this.props.route.auth,
 			user:this.state.user,
 			modifyUser:this.modifyUser
 		}
 		return (
          <div className="height-100">
 				<Notifications notification={pass.notification}/>
-            <Header notification={pass.notification} user={pass.user}/>
+            <Header notification={pass.notification} auth={this.props.route.auth}/>
 				<div className="page-body">
 					{React.cloneElement(this.props.children, pass)}
 				</div>

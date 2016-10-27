@@ -15,19 +15,25 @@ var argv = require('yargs').argv;
 var watch = false;
 if (argv.watch) watch = true;
 
-// var copy = function (prod) {
-// 	if (prod){
-// 		var bootstrap = gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
-// 		.pipe(rename("bootstrap.css"))
-// 		.pipe(gulp.dest('public/vendor'));
-// 	} else {
-// 		var bootstrap = gulp.src('node_modules/bootstrap/dist/css/bootstrap.css')
-// 		.pipe(gulp.dest('public/vendor'));
-// 	}
-// 	var bootstrap = gulp.src('node_modules/bootstrap/dist/css/bootstrap.css')
-// 	.pipe(gulp.dest('public/vendor'));
-// 	return bootstrap;
-// }
+var copy = function (prod) {
+	var bootstrap = gulp.src('node_modules/bootstrap/dist/**')
+	.pipe(gulp.dest('public/vendor/bootstrap'));
+	var jquery = gulp.src('node_modules/jquery/dist/**')
+	.pipe(gulp.dest('public/vendor/jquery'));
+	var tether = gulp.src('node_modules/tether/dist/**')
+	.pipe(gulp.dest('public/vendor/tether'));
+	var react = gulp.src('node_modules/react/dist/**')
+	.pipe(gulp.dest('public/vendor/react'));
+	var reactDom = gulp.src('node_modules/react-dom/dist/**')
+	.pipe(gulp.dest('public/vendor/react-dom'));
+	var reactRouter = gulp.src('node_modules/react-router/umd/**')
+	.pipe(gulp.dest('public/vendor/react-router'));
+	var auth0Lock = gulp.src('bower_components/auth0-lock/build/**')
+	.pipe(gulp.dest('public/vendor/auth0-lock'));
+
+	return merge(bootstrap,jquery,tether,react,reactDom,reactRouter,auth0Lock);
+
+}
 
 var styles = function(){
 	var cssMini = gulp.src(['./styles/**/*.scss','!./styles/common.scss'])
@@ -72,7 +78,7 @@ var jsBundle = function (prod){
 
 var buildProject = function (prod) {
 	jsStream = jsBundle(prod);
-	// copyStream = copy(prod);
+	copyStream = copy();
 	styleStream = styles();
 
 	if(watch) {
@@ -81,7 +87,7 @@ var buildProject = function (prod) {
 			styles(prod);
 		});
 	}
-	return merge(jsStream, styleStream);
+	return merge(jsStream, copyStream, styleStream);
 }
 
 gulp.task('dev',['set-dev'], function(){
@@ -102,4 +108,8 @@ gulp.task('set-prod', function() {
 
 gulp.task('bower', function() {
 	return bower({cwd: './public' });
+});
+
+gulp.task('copy', function(){
+	return copy();
 });

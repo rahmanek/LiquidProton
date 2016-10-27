@@ -23,7 +23,6 @@ export default React.createClass({
     			</div>
 			)
 		}
-
 		return notificationView;
 	}
 });

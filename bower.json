@@ -1,0 +1,14 @@
+{
+  "name": "liquidproton",
+  "description": "",
+  "main": "public/index.html",
+  "authors": [
+    "Ebad Rahman <rahmanek@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "auth0-lock": "^10.5.0"
+  }
+}

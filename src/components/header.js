@@ -92,7 +92,7 @@ export default React.createClass({
 	render: function (){
 		var auth = this.props.auth;
 		var type = "public";
-		// if(auth.loggedIn()) type = "user";
+		if(auth.loggedIn()) type = "user";
 		return (
 			<div id="header">
 				<nav className="navbar navbar-fixed-top">
@@ -100,9 +100,9 @@ export default React.createClass({
 					<span className="navbar-brand" href="#">Hi</span>
 					<ul className="nav navbar-nav hidden-sm-down float-xs-right">
 						{
-							this.state.navItems.map((item)=>{
+							this.state.navItems.map((item, i)=>{
 								if(item.name == "Dev") return(
-									<li className="nav-item dropdown">
+									<li className="nav-item dropdown" key={i}>
 										<a href="javascript:" className="nav-link dropdown-toggle" data-toggle="dropdown" id="responsiveNavbarDropdown">{item.name}</a>
 										<div className="dropdown-menu">
 											<a className="dropdown-item" href="javascript:" onClick={this.loginRandom}>Login Random User</a>
@@ -111,17 +111,17 @@ export default React.createClass({
 									</li>
 								);
 								else if (item[type] && item.name == "Login") return(
-									<li className="nav-item">
+									<li className="nav-item" key={i}>
 										<a href="javascript:" className="nav-link" onClick={()=>auth.lock.show()}>Login</a>
 									</li>
 								);
 								else if (item[type] && item.name == "Logout") return(
-									<li className="nav-item">
-										<a href="javascript:" className="nav-link" onClick={()=>auth.logout()}>Login</a>
+									<li className="nav-item" key={i}>
+										<a href="javascript:" className="nav-link" onClick={()=>auth.logout()}>Logout</a>
 									</li>
 								);
 								else if (item[type]) return (
-									<li className="nav-item">
+									<li className="nav-item" key={i}>
 										<Link to={item.link} className="nav-link">{item.name}</Link>
 									</li>
 								);
@@ -139,11 +139,11 @@ export default React.createClass({
 						<h4>Menu</h4>
 						<ul className="list-group">
 							{
-								this.state.navItems.map((item)=>{
+								this.state.navItems.map((item, i)=>{
 									if(item.name == "Dev") return null;
 									else if (item[type] && item.name != "Dev"){
 										return (
-											<div>
+											<div key={i}>
 												<a className="list-group-item" href="javascript:">{item.name}</a>
 												<hr/>
 											</div>

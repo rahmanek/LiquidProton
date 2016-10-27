@@ -14,7 +14,6 @@ export default React.createClass({
 			id:this.props.location.query.id,
 			activity:{}
 		}
-		console.log(postData);
 		$.post(config.apiHost + "/activity/receipt/retrieve", postData)
 		.then((data)=>{
 			this.setState({activity:data});
