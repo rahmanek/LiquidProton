@@ -5,6 +5,7 @@ export default class AuthService {
 	constructor(clientId,domain) {
 		// Configure Auth0
 		this.lock = new Auth0Lock(clientId, domain, {
+			allowedConnections: ['flectino-dev'],
 			socialButtonStyle: 'small',
 			languageDictionary: {
 				title: "Hi"
@@ -21,9 +22,7 @@ export default class AuthService {
 	}
 
 	_doAuthentication(authResult){
-	    // Saves the user token
-		 console.log(this);
-		 console.log(authResult);
+	   // Saves the user token
 		this.setToken(authResult.idToken);
 		this.lock.getProfile(authResult.idToken, (error, profile) => {
 			if (error) {
