@@ -31,8 +31,7 @@ ReactDOM.render((
 		<Route component={App} auth={auth}>
 			<Route path="landing" component={Landing}/>
 			<Route path="help" component={Help}/>
-			<Route path="activities" component={Activities} onEnter={requireAuth}/>
-			<Route path="activity" component={Activity} onEnter={requireAuth}/>
+			{/* <Route path="dash" component={Dash} onEnter={requireAuth}/> */}
 			<Route path="settings" component={Settings} onEnter={requireAuth}/>
 			<Route path="apiKeys" component={ApiKeys} onEnter={requireAuth}/>
 			<Route path="create" component={Create} onEnter={requireAuth}/>

@@ -11,58 +11,40 @@ export default React.createClass({
 		return{
 			navItems:[
 				{
-					name:"Dev",
-					link:"",
-					user: true,
-					agent: true,
-					public: true
+					name: "Dash",
+					link: "dash",
+					public: false
 				},{
-					name:"Activity",
-					link:"activities",
-					user: true,
-					agent: false,
+					name: "Documentation",
+					link: "docs",
+					public: false
+				},{
+					name: "Support",
+					link: "support",
 					public: false
 				},{
 					name: "API Keys",
 					link:"apiKeys",
-					user: false,
-					agent: true,
 					public: false
 				},{
 					name: "Create",
 					link:"create",
-					user: false,
-					agent: true,
 					public: false
 				},{
 					name:"Settings",
 					link:"settings",
-					user:true,
-					agent:true,
 					public: false
 				},{
 					name:"Help",
 					link:"help",
-					user:true,
-					agent:true,
 					public: false
 				},{
 					name: "Login",
 					link:"login",
-					user: false,
-					agent: false,
 					public: true
 				},{
 					name: "Logout",
 					link:"logout",
-					user: true,
-					agent: true,
-					public: false
-				},{
-					name: "About",
-					link: "",
-					user: false,
-					agent: false,
 					public: false
 				}
 			]
