@@ -12,8 +12,8 @@ export default React.createClass({
 	},
 	render: function (){
 		return (
-			<div id="settings" className="margin-top-30 margin-bottom-30">
-				<div className="row light-border">
+			<div id="account">
+				{/* <div className="row light-border">
 					<div className="col-xs-4">
 						First Name:
 					</div>
@@ -71,7 +71,8 @@ export default React.createClass({
 							</div>
 						)
 					}
-				</div>
+				</div> */}
+				Account
 			</div>
 		);
 	}

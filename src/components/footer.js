@@ -1,7 +1,6 @@
 import { React, ReactRouter } from '../cdn'
 import config from '../../config.js'
 import User from '../classes/User.js'
-import Navigation from './navigation.js'
 
 var Link = ReactRouter.Link;
 var browserHistory = ReactRouter.browserHistory;

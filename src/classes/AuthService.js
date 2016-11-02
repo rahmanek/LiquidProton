@@ -2,10 +2,10 @@ import { Auth0Lock, ReactRouter } from '../cdn'
 var browserHistory = ReactRouter.browserHistory;
 export default class AuthService {
 
-	constructor(clientId,domain) {
+	constructor(clientId,domain,isClosable) {
 		// Configure Auth0
 		this.lock = new Auth0Lock(clientId, domain, {
-			allowedConnections: ['flectino-dev'],
+			allowedConnections: ['flectino-dev', 'github', 'google-oauth2'],
 			socialButtonStyle: 'small',
 			languageDictionary: {
 				title: "Hi"
@@ -30,7 +30,7 @@ export default class AuthService {
 			} else {
 				this.setProfile(profile);
 				if (typeof profile.group != "undefined" && profile.group == "agent") browserHistory.push("dash");
-				else browserHistory.push("activities");
+				else browserHistory.push("dash");
 			}
 		})
 	}
@@ -51,7 +51,7 @@ export default class AuthService {
 		this.lock.show()
 	}
 
-	loggedIn(){
+	isLoggedIn(){
 		// Checks if there is a saved token and it's still valid
 		return !!this.getToken()
 	}

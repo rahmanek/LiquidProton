@@ -2,25 +2,31 @@
 @import 'variables';
 @import 'generic';
 @import 'notifications';
-@import 'sideNav';
+@import 'nav';
 @import 'modal';
 @import 'header';
 @import 'home';
 @import 'activity';
 @import 'activities';
 @import 'links';
-@import 'settings';
+// @import 'settings';
 @import 'create';
-@import 'verified';
-@import 'keys';
-@import 'navigation';
+// @import 'verified';
+@import 'apiKey';
+// @import 'navigation';
 @import 'login';
 @import 'footer';
 
 body, html {
    height:100%;
    width:100%;
-   background-color: $background-color;
+   background-color: white;
+	font-family: Helvetica, Geneva, sans-serif !important;
+}
+
+.fix-width{
+	min-width:1000px;
+	max-width:1000px;
 }
 
 a {
@@ -34,7 +40,11 @@ a {
 .page-body{
    // padding-top: $header-height;
    height:100%;
-   background-color:$footer-color;
+}
+
+.background-white{
+	background-color:white;
+
 }
 
 .crunch-view{
@@ -60,6 +70,10 @@ a {
 
 .color-primary{
    color: $primary-color;
+}
+
+.color-primary-muted{
+	color:$primary-color-muted;
 }
 
 .color-secondary{

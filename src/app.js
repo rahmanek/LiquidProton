@@ -1,7 +1,7 @@
 import { React, ReactRouter} from './cdn'
 import Header from './components/header.js'
 import Notifications from './components/notifications.js'
-import Navigation from './components/navigation.js'
+import Nav from './components/nav'
 import { getQueryVariable } from './utilities.js'
 import User from './classes/User.js'
 import config from '../config.js'
@@ -11,12 +11,8 @@ var browserHistory = ReactRouter.browserHistory;
 export default React.createClass({
 	getInitialState: function() {
 		return{
-			notifications:[],
-			user:{}
+			notifications:[]
 		}
-	},
-	modifyUser: function(user){
-		this.setState({user:user});
 	},
 	createNotification: function(notification){
 		var notifications = this.state.notifications;
@@ -50,22 +46,30 @@ export default React.createClass({
 		return;
 	},
 	render: function (){
+		var view = this.props.routes[1];
 		var pass = {
 			notification:{
 				create: this.createNotification,
 				remove: this.removeNotification,
 				retrieve: this.retrieveNotifications
 			},
-			auth: this.props.route.auth,
-			user:this.state.user,
-			modifyUser:this.modifyUser
+			auth: this.props.route.auth
 		}
 		return (
-         <div className="height-100">
+         <div>
 				<Notifications notification={pass.notification}/>
-            <Header notification={pass.notification} auth={this.props.route.auth}/>
+            <Header notification={pass.notification} auth={this.props.route.auth} nav={view.nav}/>
 				<div className="page-body">
-					{React.cloneElement(this.props.children, pass)}
+					<div className="container fix-width">
+						<div className="row view">
+							<div className={(view.nav)?"col-xs-3":"hidden-xs-up"}>
+								<Nav auth={pass.auth}/>
+							</div>
+							<div className={(view.nav)?"col-xs-9":"col-xs-12"}>
+								{React.cloneElement(this.props.children, pass)}
+							</div>
+						</div>
+					</div>
 				</div>
          </div>
 		);

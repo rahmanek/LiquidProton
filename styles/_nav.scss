@@ -1,0 +1,13 @@
+#nav{
+	a{
+		color:black;
+		text-decoration: none;
+	}
+
+	.linkBox{
+		padding: 7px 0;
+		&:first-child{
+			padding-top:0;
+		}
+	}
+}
