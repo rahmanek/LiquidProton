@@ -13,7 +13,7 @@ export default React.createClass({
 	},
 	componentDidMount: function(){
 		var postData = {
-			id_token:this.props.auth.getToken()
+			id_token:this.props.user.getToken()
 		}
 		$.post(config.apiHost + "/activities/retrieve", postData)
 		.then((data)=>{

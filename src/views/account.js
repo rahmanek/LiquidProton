@@ -3,36 +3,44 @@ import { React } from '../cdn'
 export default React.createClass({
 	getInitialState: function() {
 	   	return {
-				apiKey:""
+				apiKey:"Your secret API Key",
+				keyPulled: false,
+				profile: this.props.user.getProfile()
 		 	};
 	},
 	presentKey: function() {
-		console.log("INC API KEY")
-		return;
+		if(!this.state.keyPulled) this.props.user.getSecureProfile().then((user)=>{
+			this.setState({apiKey:user.app_metadata.key,keyPulled:true});
+		});
 	},
-	copyKey: function() {
-		console.log("COPY API KEY")
-		return;
-	},
+
 	render: function (){
-		var profile = this.props.auth.getProfile();
 		return (
 			<div id="account">
 				<h3>Account</h3>
 				<div className="col-xs-12 infoBox margin-top-15">
-					<div className="col-xs-6">
-						<h5>Email</h5>
-						<span>{profile.email}</span>
+					<div className="row">
+						<div className="col-xs-6">
+							<h5>Email</h5>
+							<span>{this.state.profile.email}</span>
+						</div>
+						<div className="col-xs-6">
+							<h5>Subscription</h5>
+							<span>Free Unlimited</span>
+						</div>
 					</div>
-					<div className="col-xs-6">
-						<h5>Subscription</h5>
-						<span>Free Unlimited</span>
-					</div>
-					<div className="col-xs-6 margin-top-25">
-						<h5>Api Key&nbsp;&nbsp;<a href="javascript:" className="font-size-12" onClick={this.presentKey} >Show</a></h5>
-						<div className="input-group">
-							<input type="password" className="form-control" value="Your secret API Key" readOnly/>
-							<span className="input-group-addon" id="basic-addon2" onClick={this.copyKey}><i className="fa fa-files-o"></i></span>
+					<div className="row margin-top-35">
+						<div className="col-xs-6">
+							<h5>User ID</h5>
+							<span>{this.state.profile.user_id}</span>
+						</div>
+						<div className="col-xs-6">
+							<h5>Api Key&nbsp;&nbsp;<a href="javascript:" className="font-size-12" onClick={this.presentKey}>Show</a></h5>
+							{
+								(this.state.keyPulled)?
+								<input id="keyBox" type="text" className="form-control" value={this.state.apiKey} readOnly/>:
+								<input id="keyBox" type="password" className="form-control" value={this.state.apiKey} readOnly/>
+							}
 						</div>
 					</div>
 				</div>

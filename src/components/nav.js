@@ -44,7 +44,7 @@ export default React.createClass({
 					this.state.nav.map((item, i)=>{
 						if (item.name == "Logout") return(
 							<div key={i} className="linkBox">
-								<a href="javascript:" onClick={this.props.auth.logout}>
+								<a href="javascript:" onClick={this.props.user.logout}>
 									<i className={"fa fa-fw color-primary-muted " + item.icon}></i>
 									<span>&nbsp;&nbsp;{item.name}</span>
 								</a>

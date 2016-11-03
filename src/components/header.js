@@ -8,14 +8,14 @@ var browserHistory = ReactRouter.browserHistory;
 export default React.createClass({
 
 	render: function (){
-		var auth = this.props.auth;
+		var user = this.props.user;
 		var headerAddition = (<li className="nav-item"></li>)
-		if(!auth.isLoggedIn()) headerAddition = (
+		if(!user.isLoggedIn()) headerAddition = (
 			<li className="nav-item">
-				<a href="javascript:" className="nav-link" onClick={()=>auth.login()}>Login</a>
+				<a href="javascript:" className="nav-link" onClick={()=>user.login()}>Login</a>
 			</li>
 		);
-		else if(auth.isLoggedIn() && !this.props.nav) headerAddition = (
+		else if(user.isLoggedIn() && !this.props.nav) headerAddition = (
 			<li className="nav-item">
 				<Link to="dash" className="nav-link">Dashboard</Link>
 			</li>

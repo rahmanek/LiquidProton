@@ -8,17 +8,17 @@ import Account from './views/account'
 import Docs from './views/docs'
 import Support from './views/support'
 import config from '../config'
-import AuthService from './classes/AuthService'
+import User from './classes/User'
 
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var browserHistory = ReactRouter.browserHistory;
 
-const auth = new AuthService(config.auth0.clientId, config.auth0.domain);
+const user = new User(config.auth0.clientId, config.auth0.domain);
 
 // validate authentication for private routes
 const requireAuth = (nextState, replace) => {
-	if (!auth.isLoggedIn()) {
+	if (!user.isLoggedIn()) {
 		browserHistory.push("landing");
 	} else {
 		return true;
@@ -28,7 +28,7 @@ const requireAuth = (nextState, replace) => {
 
 ReactDOM.render((
 	<Router history={browserHistory}>
-		<Route component={App} auth={auth}>
+		<Route component={App} user={user}>
 			<Route path="landing" component={Landing} nav={false}/>
 			<Route path="docs" component={Docs} nav={false}/>
 			<Route path="dash" component={Dash} onEnter={requireAuth} nav={true}/>

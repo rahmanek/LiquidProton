@@ -2,7 +2,7 @@ import { React, ReactRouter} from './cdn'
 import Header from './components/header.js'
 import Notifications from './components/notifications.js'
 import Nav from './components/nav'
-import { getQueryVariable } from './utilities.js'
+import { getQueryVariable } from './classes/Utilities'
 import User from './classes/User.js'
 import config from '../config.js'
 
@@ -53,17 +53,17 @@ export default React.createClass({
 				remove: this.removeNotification,
 				retrieve: this.retrieveNotifications
 			},
-			auth: this.props.route.auth
+			user: this.props.route.user
 		}
 		return (
          <div>
 				<Notifications notification={pass.notification}/>
-            <Header notification={pass.notification} auth={this.props.route.auth} nav={view.nav}/>
+            <Header notification={pass.notification} user={this.props.route.user} nav={view.nav}/>
 				<div className="page-body">
 					<div className="container fix-width">
 						<div className="row view">
 							<div className={(view.nav)?"col-xs-3":"hidden-xs-up"}>
-								<Nav auth={pass.auth}/>
+								<Nav user={pass.user}/>
 							</div>
 							<div className={(view.nav)?"col-xs-9":"col-xs-12"}>
 								{React.cloneElement(this.props.children, pass)}
