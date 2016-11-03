@@ -3,12 +3,11 @@ import { ReactDOM, ReactRouter } from './cdn'
 import App from './app.js'
 import Landing from './views/landing'
 import Dash from './views/dash'
-import ApiKey from './views/apiKey'
+// import ApiKey from './views/apiKey'
 import Account from './views/account'
 import Docs from './views/docs'
 import Support from './views/support'
-
-import config from '../config.js'
+import config from '../config'
 import AuthService from './classes/AuthService'
 
 var Router = ReactRouter.Router;
@@ -33,7 +32,7 @@ ReactDOM.render((
 			<Route path="landing" component={Landing} nav={false}/>
 			<Route path="docs" component={Docs} nav={false}/>
 			<Route path="dash" component={Dash} onEnter={requireAuth} nav={true}/>
-			<Route path="apiKey" component={ApiKey} onEnter={requireAuth} nav={true}/>
+			{/* <Route path="apiKey" component={ApiKey} onEnter={requireAuth} nav={true}/> */}
 			<Route path="account" component={Account} onEnter={requireAuth} nav={true}/>
 			<Route path="support" component={Support} nav={true}/>
 		</Route>

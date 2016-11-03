@@ -13,10 +13,6 @@ export default React.createClass({
 					link: "dash",
 					icon: "fa-bar-chart"
 				},{
-					name: "API Key",
-					link:"apiKey",
-					icon: "fa-key"
-				},{
 					name:"Account",
 					link:"account",
 					icon: "fa-user-o"

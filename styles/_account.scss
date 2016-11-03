@@ -1,10 +1,17 @@
 #account{
-   background-color: white;
-   padding: 30px 30px 30px 30px;
-   border: 1px solid $gray-light-2;
-	border-bottom: 1px solid $secondary-color;
-   .light-border{
-      border-top: 1px solid $gray-light-2;
-      padding: 10px 0;
+   // background-color: white;
+   // padding: 30px 30px 30px 30px;
+   // border: 1px solid $gray-light-2;
+	// border-bottom: 1px solid $secondary-color;
+   // .light-border{
+   //    border-top: 1px solid $gray-light-2;
+   //    padding: 10px 0;
+   // }
+   a{
+      color:black;
+   }
+   .infoBox{
+      background-color: $gray-light;
+      padding:15px;
    }
 }
