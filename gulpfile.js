@@ -48,10 +48,10 @@ var styles = function(){
 	return merge(css, cssMini);
 }
 
-var jsBundle = function (prod){
+var jsBundle = function (prod, filename){
 	var Browserify;
 
-	var bundle = browserify({entries: 'src/web.js', debug: !prod});
+	var bundle = browserify({entries: 'src/' + filename + '.js', debug: !prod});
 	if (watch) bundle = watchify(bundle);
 	bundle.transform(babelify)
 	.on('log', gutil.log)
@@ -60,14 +60,14 @@ var jsBundle = function (prod){
 	function createBundle() {
 		Browserify = bundle.bundle()
 		.on('error', function(err){gutil.log("Watchify: " + err)})
-		.pipe(source('bundle.js'))
+		.pipe(source(filename + '.js'))
 		.pipe(gulp.dest("public/js"));
 	}
 
 	if (prod) {
 		Browserify = bundle.bundle()
 			.on('error', function(err){gutil.log("Browserify: " + err)})
-			.pipe(source('bundle.js'))
+			.pipe(source(filename + '.js'))
 			.pipe(buffer())
 			.pipe(uglify())
 			.pipe(gulp.dest('public/js'));
@@ -77,7 +77,8 @@ var jsBundle = function (prod){
 }
 
 var buildProject = function (prod) {
-	jsStream = jsBundle(prod);
+	jsStream = jsBundle(prod, "web");
+	jsStream2 = jsBundle(prod, "landing");
 	copyStream = copy();
 	styleStream = styles();
 
@@ -87,7 +88,7 @@ var buildProject = function (prod) {
 			styles(prod);
 		});
 	}
-	return merge(jsStream, copyStream, styleStream);
+	return merge(jsStream, jsStream2, copyStream, styleStream);
 }
 
 gulp.task('dev',['set-dev'], function(){

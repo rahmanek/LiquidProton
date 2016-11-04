@@ -9,11 +9,13 @@ export default React.createClass({
 		};
 	},
 	componentDidMount: function(){
+
 		var postData = {
 			authorization:User.getAuthorization(),
 			id:this.props.location.query.id,
 			activity:{}
 		}
+
 		$.post(config.apiHost + "/activity/receipt/retrieve", postData)
 		.then((data)=>{
 			this.setState({activity:data});
