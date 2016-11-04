@@ -11,6 +11,7 @@
     "view": "npm run deploy && cd builds/web && http-server -o",
     "eslint": "eslint src/**",
     "test": "gulp copy",
+	 "dev2": "cd public && concurrently \"gulp devLanding --watch\" \"lite-server\"",
     "postinstall": "bower install && npm run deploy && cd public/creative && npm install"
   },
   "author": "Ebad Rahman <rahmanek@gmail.com>",

@@ -83,6 +83,15 @@ export default class User {
 		localStorage.removeItem('id_token');
 		localStorage.removeItem('profile');
 		return;
-
+	}
+	update(postData){
+		return $.ajax({
+			url: config.apiHost + "/users/" + this.getProfile().user_id,
+			type: "patch",
+			headers: {
+				Authorization: "Bearer " + this.getToken(),
+			},
+			data:postData
+		});
 	}
 }

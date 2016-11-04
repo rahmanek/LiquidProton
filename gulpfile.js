@@ -76,9 +76,8 @@ var jsBundle = function (prod, filename){
 	return Browserify;
 }
 
-var buildProject = function (prod) {
-	jsStream = jsBundle(prod, "web");
-	jsStream2 = jsBundle(prod, "landing");
+var buildProject = function (prod, filename="web") {
+	jsStream = jsBundle(prod, filename);
 	copyStream = copy();
 	styleStream = styles();
 
@@ -88,15 +87,20 @@ var buildProject = function (prod) {
 			styles(prod);
 		});
 	}
-	return merge(jsStream, jsStream2, copyStream, styleStream);
+	return merge(jsStream, copyStream, styleStream);
 }
 
 gulp.task('dev',['set-dev'], function(){
 	return buildProject(false);
 });
 
+gulp.task('devLanding',['set-dev'], function(){
+	return buildProject(false, 'landing');
+});
+
 gulp.task('deploy',['set-prod'], function(){
-	return buildProject(true);
+	buildProject(true);
+	return buildProject(true, 'landing');
 });
 
 gulp.task('set-dev', function() {

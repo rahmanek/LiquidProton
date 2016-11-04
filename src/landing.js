@@ -4,5 +4,9 @@ import Activity from './views/activity'
 
 
 ReactDOM.render((
-	<Activity/>
+
+	<div>
+		<Activity/>
+		Hi
+	</div>
 ), document.getElementById('app'));

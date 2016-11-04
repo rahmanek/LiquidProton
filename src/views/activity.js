@@ -1,7 +1,5 @@
 import { React } from '../cdn'
 import config from '../../config.js'
-import User from '../classes/User.js'
-
 export default React.createClass({
 	getInitialState:function(){
 		return {
@@ -9,14 +7,7 @@ export default React.createClass({
 		};
 	},
 	componentDidMount: function(){
-
-		var postData = {
-			authorization:User.getAuthorization(),
-			id:this.props.location.query.id,
-			activity:{}
-		}
-
-		$.post(config.apiHost + "/activity/receipt/retrieve", postData)
+		$.get(config.apiHost + "/v1/transaction/aL0ipG0QtG9kxw")
 		.then((data)=>{
 			this.setState({activity:data});
 		});
@@ -24,11 +15,12 @@ export default React.createClass({
 	},
 	render: function (){
 		if(this.state.activity === null) return(<div></div>);
+		console.log(this.state.activity)
 		var activity = this.state.activity;
-		var date = new Date(Date.parse(activity.Receipt.createdAt));
+		var date = new Date(Date.parse(activity.Receipt.transactedAt));
 		var formattedDate = date.toLocaleString();
 		return (
-         <div id="activity" className="views">
+         <div id="activity">
 				<div className="row activity-header">
 					<div className="col-xs-6">
 						{formattedDate}
