@@ -17,8 +17,8 @@ export default React.createClass({
 	render: function (){
 		return (
 			<div id="account">
-				<h3>Account</h3>
-				<div className="col-xs-12 infoBox margin-top-15">
+				<h3 className="margin-bottom-25">Account</h3>
+				<div className="col-xs-12 infoBox">
 					<div className="row">
 						<div className="col-xs-6">
 							<h5>Email</h5>

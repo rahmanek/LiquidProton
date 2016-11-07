@@ -99,8 +99,7 @@ gulp.task('devLanding',['set-dev'], function(){
 });
 
 gulp.task('deploy',['set-prod'], function(){
-	buildProject(true);
-	return buildProject(true, 'landing');
+	return merge(buildProject(true), buildProject(true, 'landing'));
 });
 
 gulp.task('set-dev', function() {

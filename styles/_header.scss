@@ -1,4 +1,11 @@
 #header{
+	.navbar{
+		background-color: $primary-color;
+		color:white;
+		a{
+			color:white;
+		}
+	}
 	// line-height: $header-height;
 	// vertical-align: middle;
 	// .full-line-height{
@@ -21,7 +28,7 @@
 	nav{
 		background-color: $background-color;
 		color: black;
-		border-bottom: 1px solid $secondary-color;
+		// border-bottom: 1px solid $secondary-color;
 	}
 	hr{
 		background-color:#999999;

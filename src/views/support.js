@@ -5,7 +5,7 @@ export default React.createClass({
 	render: function (){
 		return (
 			<div id="support">
-				Support
+				<h3 className="margin-bottom-25">Support</h3>
 			</div>
 		);
 	}

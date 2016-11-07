@@ -4,8 +4,8 @@ export default React.createClass({
 
 	render: function (){
 		return (
-			<div id="dash">
-				<h3 className="view-title margin-bottom-25">Dashboard</h3>
+			<div id="landing">
+				<h3 className="margin-bottom-25">Landing</h3>
 			</div>
 		);
 	}

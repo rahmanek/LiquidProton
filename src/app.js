@@ -62,10 +62,7 @@ export default React.createClass({
 				<div className="page-body">
 					<div className="container fix-width">
 						<div className="row view">
-							<div className={(view.nav)?"col-xs-3":"hidden-xs-up"}>
-								<Nav user={pass.user}/>
-							</div>
-							<div className={(view.nav)?"col-xs-9":"col-xs-12"}>
+							<div className="col-xs-12">
 								{React.cloneElement(this.props.children, pass)}
 							</div>
 						</div>

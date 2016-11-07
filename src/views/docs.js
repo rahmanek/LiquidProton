@@ -5,7 +5,7 @@ export default React.createClass({
 	render: function (){
 		return (
 			<div id="docs">
-				Docs
+				<h3 className="margin-bottom-25">Documentation</h3>
 			</div>
 		);
 	}
