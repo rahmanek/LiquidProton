@@ -1,0 +1,126 @@
+#landing{
+.line-height-inherit{
+   line-height: inherit;
+}
+
+.footer{
+   border-top:1px solid $primary-color;
+}
+   .menu{
+      height:100vh;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index: 99;
+      width:60%;
+   }
+   .menuHead{
+      padding:1.75rem 1.25rem;
+      text-align: center;
+   }
+   .logo{
+      display:block;
+      width:75%;
+      max-width:300px;
+      height:auto;
+      margin: auto;
+      z-index: 0;
+   }
+   a{
+      color:$primary-color;
+   }
+   .promo{
+      color:white;
+   }
+   .date{
+      text-align: center;
+      padding:5px;
+   }
+
+   .socialIcons{
+      font-size:28px;
+      text-align:center;
+      padding-right:25px;
+   }
+
+   background-color: white;
+
+   .newSection{
+      border-top: 3px solid #999;
+   }
+
+   #receiptInfo{
+      th, td{
+         border:none;
+      }
+   }
+
+   .total{
+      background-color:$primary-color;
+      padding:5px;
+      text-align: middle;
+      color:white
+   }
+
+   .activity-header{
+      border-bottom: 1px solid $primary-color;
+      // padding-bottom:7px;
+   }
+   .promo1{
+      background-color:$primary-color;
+      padding:10px 10px;
+      color:white;
+   }
+   .promo2{
+      background-color:white;
+      padding:10px 10px;
+      color:black;
+   }
+
+   #sidebar {
+     height: 100%;
+     padding-right: 0;
+     padding-top: 20px;
+   }
+   #sidebar .nav {
+     width: 95%;
+   }
+   #sidebar li {
+     border:0 #f2f2f2 solid;
+     border-bottom-width:1px;
+   }
+
+   /* collapsed sidebar styles */
+   @media screen and (max-width: 767px) {
+     .row-offcanvas {
+       position: relative;
+       -webkit-transition: all 0.25s ease-out;
+       -moz-transition: all 0.25s ease-out;
+       transition: all 0.25s ease-out;
+     }
+     .row-offcanvas-right
+     .sidebar-offcanvas {
+       right: -41.6%;
+     }
+
+     .row-offcanvas-left
+     .sidebar-offcanvas {
+       left: -41.6%;
+     }
+     .row-offcanvas-right.active {
+       right: 41.6%;
+     }
+     .row-offcanvas-left.active {
+       left: 41.6%;
+     }
+     .sidebar-offcanvas {
+       position: absolute;
+       top: 0;
+       width: 41.6%;
+     }
+     #sidebar {
+       padding-top:0;
+     }
+   }
+
+}

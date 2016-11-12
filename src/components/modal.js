@@ -9,7 +9,7 @@ export default React.createClass({
 						<div className="modal-dialog vertical-align-center" role="document">
 							<div className="modal-content">
 								<div className="row">
-									<div className="col-xs-10 col-xs-offset-1">
+									<div className="col-xs-12">
 										{this.props.children}
 									</div>
 								</div>

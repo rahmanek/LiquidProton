@@ -6,11 +6,15 @@
    text-align:center;
 }
 
+.vertical-align-middle{
+   vertical-align: middle;
+}
+
 .color-black{
 	color:black;
 }
 
-.displayTable{
+.display-table{
    display:table;
 }
 
@@ -18,11 +22,20 @@
    display:inline-block;
 }
 
-.displayTableCellMiddle{
-   display:table-cell;
-   vertical-align:middle;
-   margin:0 auto;
+// .display-middle-cell{
+//    display:table-cell;
+//    vertical-align:middle;
+//    margin:0 auto;
+// }
+
+.vertical-align {
+    display: flex;
+    align-items: center;
 }
+
+// .vertical-align-middle{
+//    vertical-align: middle;
+// }
 
 .display-none{
    display: none;
@@ -32,7 +45,7 @@
    display:block;
 }
 
-.autoMargin{
+.margin-auto{
    margin:auto;
 }
 
@@ -71,6 +84,10 @@
    position:relative;
 }
 
+.position-fixed{
+   position:fixed;
+}
+
 .cursor-default{
    cursor:default;
 }
@@ -91,10 +108,8 @@
 	text-align: right;
 }
 
-.text-white{
-   &:link,&:hover, &:visited, &:active, &:focus {
-      color:#FFFFFF;
-   }
+.color-white{
+   color: white !important;
 }
 
 .linkHand{
@@ -106,12 +121,16 @@
     height:100%;
 }
 
+.height-100vh{
+   height:100vh;
+}
+
 .width-100{
     width:100%;
 }
 
 // Add font-size classes
-@for $i from 6 through 16 {
+@for $i from 6 through 32 {
    .font-size-#{$i * 2}{
       font-size: #{$i * 2}px;
    }

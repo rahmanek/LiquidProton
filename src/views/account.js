@@ -17,7 +17,7 @@ export default React.createClass({
 	render: function (){
 		return (
 			<div id="account">
-				<h3 className="margin-bottom-25">Account</h3>
+				<div className="page-header">Account</div>
 				<div className="col-xs-12 infoBox">
 					<div className="row">
 						<div className="col-xs-6">

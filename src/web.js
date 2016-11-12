@@ -1,7 +1,7 @@
 import { ReactDOM, ReactRouter } from './cdn'
 
 import App from './app.js'
-import Landing from './views/landing'
+import Auth from './views/auth'
 import Dash from './views/dash'
 // import ApiKey from './views/apiKey'
 import Account from './views/account'
@@ -19,7 +19,7 @@ const user = new User(config.auth0.clientId, config.auth0.domain);
 // validate authentication for private routes
 const requireAuth = (nextState, replace) => {
 	if (!user.isLoggedIn()) {
-		browserHistory.push("landing");
+		browserHistory.push("dash");
 	} else {
 		return true;
 	}
@@ -29,7 +29,7 @@ const requireAuth = (nextState, replace) => {
 ReactDOM.render((
 	<Router history={browserHistory}>
 		<Route component={App} user={user}>
-			<Route path="landing" component={Landing} nav={false}/>
+			<Route path="auth" component={Auth} nav={false}/>
 			<Route path="docs" component={Docs} nav={false}/>
 			<Route path="dash" component={Dash} onEnter={requireAuth} nav={true}/>
 			{/* <Route path="apiKey" component={ApiKey} onEnter={requireAuth} nav={true}/> */}

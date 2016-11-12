@@ -29,9 +29,9 @@ export default class User {
 			if (error) {
 				console.log('Error loading the Profile', error)
 			} else {
+				console.log(profile)
 				this.setProfile(profile);
-				if (typeof profile.group != "undefined" && profile.group == "agent") browserHistory.push("dash");
-				else browserHistory.push("dash");
+				browserHistory.push("dash");
 			}
 		})
 	}
@@ -69,19 +69,25 @@ export default class User {
 
 	setToken(idToken){
 		// Saves user token to localStorage
-		localStorage.setItem('id_token', idToken)
+		localStorage.setItem('id_token', idToken);
 	}
 
 	getToken(){
 		// Retrieves the user token from localStorage
-		return localStorage.getItem('id_token')
+		return localStorage.getItem('id_token');
+	}
+
+	getBasicToken(){
+		return this.getSecureProfile().then(function(profile){
+		 	return Promise.resolve("Basic " + window.btoa(profile.user_id + ":" + profile.keys[0].token));
+		});
 	}
 
 	logout(){
-		browserHistory.push('landing');
 		// Clear user token and profile data from localStorage
 		localStorage.removeItem('id_token');
 		localStorage.removeItem('profile');
+		browserHistory.push('auth');
 		return;
 	}
 	update(postData){

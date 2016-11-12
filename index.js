@@ -7,6 +7,10 @@ app.get('/', function (req, res) {
   res.sendFile(path.resolve(__dirname + '/public/creative/index.html'));
 });
 
+app.get('/t*', function (req, res) {
+  res.sendFile(path.resolve(__dirname + '/public/landing.html'));
+});
+
 app.get('/retailer', function (req, res) {
   res.sendFile(path.resolve(__dirname + '/public/creative/customer.html'));
 });

@@ -6,7 +6,7 @@
 @import 'modal';
 @import 'header';
 @import 'home';
-@import 'activity';
+@import 'landing';
 @import 'activities';
 @import 'links';
 // @import 'settings';
@@ -24,6 +24,10 @@ body, html {
 	font-family: Helvetica, Geneva, sans-serif !important;
 }
 
+.primary-button{
+   background-color:$primary-color;
+}
+
 .fix-width{
 	min-width:1000px;
 	max-width:1000px;
@@ -35,6 +39,13 @@ a {
 
 #app{
    height:100%;
+}
+
+.page-header{
+   font-size:2rem;
+   font-weight:500;
+   line-height:1.1;
+   margin-bottom:25px;
 }
 
 .page-body{
@@ -86,17 +97,6 @@ a {
    &:hover{
       background-color: desaturate($primary-color,40%);
    }
-}
-
-.btn-secondary{
-   background-color: $secondary-color;
-   color:white;
-   border:none;
-   &:hover{
-      background-color: desaturate($secondary-color,40%);
-      color:white;
-   }
-
 }
 
 .border-bottom{

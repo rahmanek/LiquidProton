@@ -5,7 +5,7 @@ export default React.createClass({
 	render: function (){
 		return (
 			<div id="dash">
-				<h3 className="view-title margin-bottom-25">Dashboard</h3>
+				<div className="page-header">Dashboard</div>
 			</div>
 		);
 	}

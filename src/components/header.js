@@ -37,10 +37,6 @@ export default React.createClass({
 			]
 		}
 	},
-	logout: function(){
-		User.deleteAuthorization();
-		browserHistory.push("login");
-	},
 
 	render: function (){
 		var user = this.props.user;
@@ -53,7 +49,6 @@ export default React.createClass({
 					<ul className="nav navbar-nav hidden-sm-down float-xs-right">
 						{
 							this.state.nav.map((item, i)=>{
-								console.log(user.isLoggedIn(),item.private)
 								if(user.isLoggedIn() && item.private) return(
 									<li key={i} className="nav-item">
 										{
