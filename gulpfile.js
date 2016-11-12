@@ -77,6 +77,7 @@ var jsBundle = function (prod, filename){
 }
 
 var buildProject = function (prod, filename="web") {
+	filename = filename || "web";
 	jsStream = jsBundle(prod, filename);
 	copyStream = copy();
 	styleStream = styles();
