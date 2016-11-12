@@ -76,7 +76,7 @@ var jsBundle = function (prod, filename){
 	return Browserify;
 }
 
-var buildProject = function (prod, filename="web") {
+var buildProject = function (prod, filename) {
 	filename = filename || "web";
 	jsStream = jsBundle(prod, filename);
 	copyStream = copy();
