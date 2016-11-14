@@ -99,6 +99,14 @@ a {
    }
 }
 
+.btn-secondary{
+   background-color: $secondary-color;
+   border:none;
+   &:hover{
+      background-color: desaturate($secondary-color,40%);
+   }
+}
+
 .border-bottom{
    border-bottom: 1px solid $gray-light-2;
 }

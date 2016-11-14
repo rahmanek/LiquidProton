@@ -52,13 +52,12 @@ export default React.createClass({
 				create: this.createNotification,
 				remove: this.removeNotification,
 				retrieve: this.retrieveNotifications
-			},
-			user: this.props.route.user
+			}
 		}
 		return (
          <div>
 				<Notifications notification={pass.notification}/>
-            <Header notification={pass.notification} user={this.props.route.user} nav={view.nav}/>
+            <Header notification={pass.notification}/>
 				<div className="page-body">
 					<div className="container fix-width">
 						<div className="row view">

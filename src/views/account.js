@@ -1,19 +1,45 @@
 import { React } from '../cdn'
+import Key from '../classes/Key'
+import User from '../classes/User'
+import Authenticate from '../classes/Authenticate'
 
 export default React.createClass({
 	getInitialState: function() {
 	   	return {
-				apiKey:"Your secret API Key",
-				keyPulled: false,
-				profile: this.props.user.getProfile()
+				key:{
+					token:"",
+					name:""
+				},
+				showKey: false,
+				profile: User.getProfile(),
+				secureProfile: {},
+				connection: "",
+				authenticate: {}
 		 	};
 	},
-	presentKey: function() {
-		if(!this.state.keyPulled) this.props.user.getSecureProfile().then((user)=>{
-			this.setState({apiKey:user.app_metadata.key,keyPulled:true});
+	componentDidMount: function(){
+		User.getFullProfile().then((secureProfile)=>{
+			this.setState({
+				secureProfile:secureProfile,
+				key:secureProfile.keys[0],
+				name:secureProfile.keys[0].name,
+				connection: secureProfile.identities[0].connection
+			});
 		});
+		var authenticate = new Authenticate({
+			initialScreen: "forgotPassword",
+			allowLogin: false
+		});
+		this.setState({authenticate:authenticate});
 	},
-
+	changePassword: function(){
+		this.state.authenticate.login();
+	},
+	saveChanges: function(){
+		Key.update({
+			name: this.state.name
+		}, this.props.user);
+	},
 	render: function (){
 		return (
 			<div id="account">
@@ -35,76 +61,37 @@ export default React.createClass({
 							<span>{this.state.profile.user_id}</span>
 						</div>
 						<div className="col-xs-6">
-							<h5>Api Key&nbsp;&nbsp;<a href="javascript:" className="font-size-12" onClick={this.presentKey}>Show</a></h5>
+							<h5>Password</h5>
+							<div className="col-xs-6 padding-left-0">
+								<a href="javascript:" onClick={this.changePassword}>Change Password</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="col-xs-12 settingsBox">
+					<div className="row keyBox">
+						<div className="col-xs-6">
+							<h5>Api Key&nbsp;&nbsp;<a href="javascript:" className="font-size-12" onClick={()=>this.setState({showKey:!this.state.showKey})}>{(this.state.showKey)?<span>Hide</span>:<span>Show</span>}</a></h5>
 							{
-								(this.state.keyPulled)?
-								<input id="keyBox" type="text" className="form-control" value={this.state.apiKey} readOnly/>:
-								<input id="keyBox" type="password" className="form-control" value={this.state.apiKey} readOnly/>
+								(this.state.showKey)?
+								<input id="keyBox" type="text" className="form-control" value={this.state.key.token} readOnly/>:
+								<input id="keyBox" type="password" className="form-control" value={this.state.key.token} readOnly/>
 							}
 						</div>
+					</div>
+					<div className="row">
+						<div className="col-xs-6 margin-top-35">
+							<h5>Business Name</h5>
+							<div className="col-xs-6 padding-left-0">
+								<input id="name" type="text" className="form-control col-xs-6" onChange={(e)=>{this.setState({name:e.target.value})}} value={this.state.name}/>
+							</div>
+						</div>
+					</div>
+					<div className="col-xs-6 offset-xs-6 margin-top-25">
+						<button type="button" className="btn btn-warning margin-left-45" onClick={this.saveChanges}>Save</button>
 					</div>
 				</div>
 			</div>
 		);
 	}
 });
-
-// <div className="row light-border">
-// 	<div className="col-xs-4">
-// 		First Name:
-// 	</div>
-// 	<div className="col-xs-4">
-// 		{this.props.user.givenName}
-// 	</div>
-// </div>
-// <div className="row light-border">
-// 	<div className="col-xs-4">
-// 		Last Name:
-// 	</div>
-// 	<div className="col-xs-4">
-// 		{this.props.user.surName}
-// 	</div>
-// </div>
-// <div className="row light-border">
-// 	<div className="col-xs-4">
-// 		Email:
-// 	</div>
-// 	<div className="col-xs-4">
-// 		{this.props.user.email}
-// 	</div>
-// 	<div className="col-xs-4">
-// 		{(this.props.user.isEmailVerified)?<span></span>:<span>Verify Email</span>}
-// 	</div>
-// </div>
-// <div className="row light-border">
-// 	<div className="col-xs-4">
-// 		Notification Preference:
-// 	</div>
-// 	<div className="col-xs-4">
-// 		{(this.props.user.emailPreference == 0) ? "Immediately":"Never"}
-// 	</div>
-// </div>
-// <div className="margin-top-50 row">
-// 	{
-// 		(this.state.editMode) ? (
-// 			<div>
-// 				<div className="col-xs-6">
-// 					<button type="button" onClick={this.toggleEditMode} className="col-xs-6 col-xs-offset-3 btn btn-secondary marginTop15" data-dismiss="modal">
-// 						Save
-// 					</button>
-// 				</div>
-// 				<div className="col-xs-6">
-// 					<button type="button" onClick={this.toggleEditMode} className="col-xs-6 col-xs-offset-3 btn marginTop15" data-dismiss="modal">
-// 						Cancel
-// 					</button>
-// 				</div>
-// 			</div>
-// 		):(
-// 			<div className="col-xs-6">
-// 				<button type="button" onClick={this.toggleEditMode} className="col-xs-6 col-xs-offset-3 btn btn-primary marginTop15" data-dismiss="modal">
-// 					Edit
-// 				</button>
-// 			</div>
-// 		)
-// 	}
-// </div>

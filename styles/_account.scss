@@ -8,10 +8,24 @@
    //    padding: 10px 0;
    // }
    a{
-      color:black;
+      color: $primary-color;
    }
    .infoBox{
       background-color: $gray-light;
       padding:35px;
+   }
+   .settingsBox{
+      border: 1px solid #DDDDDD;
+      margin-top:25px;
+      padding-bottom:25px;
+   }
+   .keyBox{
+      margin-top:35px;
+      padding-bottom:35px;
+      border-bottom:1px solid #DDDDDD;
+   }
+   .textInput{
+      border:none !important;
+      background: none;
    }
 }

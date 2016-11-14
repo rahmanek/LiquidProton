@@ -5,7 +5,7 @@ export default React.createClass({
 	render: function (){
 		return (
 			<div id="auth">
-				<div className="page-header">A</div>
+				<div className="page-header">Authenticate</div>
 			</div>
 		);
 	}
