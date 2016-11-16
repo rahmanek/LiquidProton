@@ -1,6 +1,5 @@
 
 var environment = "production";
-// var environment = "development";
 export default {
 	environment: environment,
 	apiHost: (function(){

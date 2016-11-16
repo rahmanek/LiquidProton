@@ -2,6 +2,9 @@ import { React } from '../cdn'
 import User from '../classes/User'
 import sample from '../data/transactionSample'
 import config from '../../config.js'
+
+console.log(config);
+
 export default React.createClass({
 	getInitialState: function() {
    	return {

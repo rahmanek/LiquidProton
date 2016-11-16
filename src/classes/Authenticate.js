@@ -6,7 +6,6 @@ var browserHistory = ReactRouter.browserHistory;
 export default class Authenticate{
 
 	constructor(options={}) {
-		console.log(options)
 		var lockSettings = {
 			allowedConnections: ['flectino-dev', 'github', 'google-oauth2'],
 			socialButtonStyle: 'small',
