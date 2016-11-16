@@ -1,6 +1,7 @@
 
 @import 'variables';
 @import 'generic';
+@import 'docs';
 @import 'notifications';
 @import 'nav';
 @import 'modal';
@@ -24,6 +25,9 @@ body, html {
 	font-family: Helvetica, Geneva, sans-serif !important;
 }
 
+input{
+   border-radius:0 !important;
+}
 .primary-button{
    background-color:$primary-color;
 }
@@ -113,4 +117,11 @@ a {
 
 .border-right{
    border-right: 1px solid $gray-light-2;
+}
+
+#auth{
+   #authContainer{
+      // height:500px;
+      // width:300px;
+   }
 }

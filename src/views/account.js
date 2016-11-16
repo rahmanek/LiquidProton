@@ -1,7 +1,9 @@
-import { React } from '../cdn'
+import { React, ReactRouter } from '../cdn'
 import Key from '../classes/Key'
 import User from '../classes/User'
-import Authenticate from '../classes/Authenticate'
+import Authenticate from '../classes/Authenticate';
+
+var browserHistory = ReactRouter.browserHistory;
 
 export default React.createClass({
 	getInitialState: function() {
@@ -25,6 +27,8 @@ export default React.createClass({
 				name:secureProfile.keys[0].name,
 				connection: secureProfile.identities[0].connection
 			});
+		}).catch(function(err){
+			console.log(err);
 		});
 		var authenticate = new Authenticate({
 			initialScreen: "forgotPassword",
@@ -48,7 +52,7 @@ export default React.createClass({
 					<div className="row">
 						<div className="col-xs-6">
 							<h5>Email</h5>
-							<span>{this.state.profile.email}</span>
+							<span>{this.state.secureProfile.email}</span>
 						</div>
 						<div className="col-xs-6">
 							<h5>Subscription</h5>
@@ -58,7 +62,7 @@ export default React.createClass({
 					<div className="row margin-top-35">
 						<div className="col-xs-6">
 							<h5>User ID</h5>
-							<span>{this.state.profile.user_id}</span>
+							<span>{this.state.secureProfile.user_id}</span>
 						</div>
 						<div className="col-xs-6">
 							<h5>Password</h5>

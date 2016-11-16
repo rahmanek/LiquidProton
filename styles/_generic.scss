@@ -33,6 +33,11 @@
     align-items: center;
 }
 
+.vertical-align {
+    display: flex;
+    align-items: baseline;
+}
+
 // .vertical-align-middle{
 //    vertical-align: middle;
 // }

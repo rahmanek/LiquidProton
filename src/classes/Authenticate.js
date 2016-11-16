@@ -6,7 +6,7 @@ var browserHistory = ReactRouter.browserHistory;
 export default class Authenticate{
 
 	constructor(options={}) {
-
+		console.log(options)
 		var lockSettings = {
 			allowedConnections: ['flectino-dev', 'github', 'google-oauth2'],
 			socialButtonStyle: 'small',
@@ -15,11 +15,12 @@ export default class Authenticate{
 			},
 			theme:{
 				logo: 'http://img06.deviantart.net/ce86/i/2013/027/1/5/batman_logo_only_by_deathonabun-d5swf2u.png',
-				primaryColor: '#31324F'
+				primaryColor: '#00a08a'
 			}
 		};
 		if (typeof options.initialScreen !="undefined") lockSettings.initialScreen = options.initialScreen;
 		if (typeof options.allowLogin !="undefined") lockSettings.allowLogin = options.allowLogin;
+		if (typeof options.container !="undefined") lockSettings.container = options.container;
 		// Configure Auth0
 		this.lock = new Auth0Lock(config.auth0.clientId, config.auth0.domain, lockSettings);
 		// Add callback for lock `authenticated` event
@@ -31,14 +32,7 @@ export default class Authenticate{
 	onAuthentication(authResult){
 	   // Saves the user token
 		this.setToken(authResult.idToken);
-		this.lock.getProfile(authResult.idToken, (error, profile) => {
-			if (error) {
-				console.log('Error loading the Profile', error)
-			} else {
-				this.setProfile(profile);
-				browserHistory.push("dash");
-			}
-		})
+		window.location = "/dash";
 	}
 
 	setProfile(profile){
@@ -62,11 +56,10 @@ export default class Authenticate{
 	}
 
 	static logout(){
-		console.log(1);
 		// Clear user token and profile data from localStorage
 		localStorage.removeItem('id_token');
 		localStorage.removeItem('profile');
-		browserHistory.push('auth');
+		window.location = "/";
 		return;
 	}
 
