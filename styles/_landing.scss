@@ -3,6 +3,10 @@
    line-height: inherit;
 }
 
+a{
+   text-decoration:none;
+}
+
 .footer{
    border-top:1px solid $primary-color;
 }
@@ -88,6 +92,10 @@
    #sidebar li {
      border:0 #f2f2f2 solid;
      border-bottom-width:1px;
+   }
+
+   .list-group-item{
+      border: 1px solid #555555;
    }
 
    /* collapsed sidebar styles */

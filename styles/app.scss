@@ -95,17 +95,19 @@ a {
    color: $secondary-color;
 }
 
-.btn-primary{
+.btn-app-primary{
    background-color: $primary-color;
    border:none;
+   color:white;
    &:hover{
       background-color: desaturate($primary-color,40%);
    }
 }
 
-.btn-secondary{
+.btn-app-secondary{
    background-color: $secondary-color;
    border:none;
+   color:white;
    &:hover{
       background-color: desaturate($secondary-color,40%);
    }

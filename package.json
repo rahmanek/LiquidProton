@@ -15,7 +15,7 @@
     "eslint": "eslint src/**",
     "test": "gulp copy",
 	 "dev2": "cd public && concurrently \"gulp devLanding --watch\" \"lite-server\"",
-    "postinstall": "bower install && npm run deploy && cd public/creative && npm install"
+    "postinstall": "bower install && gulp deploy && cd public/creative && npm install"
   },
   "author": "Ebad Rahman <rahmanek@gmail.com>",
   "license": "ISC",

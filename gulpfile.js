@@ -79,7 +79,6 @@ var jsBundle = function (prod, filename){
 var buildProject = function (prod, filename) {
 	filename = filename || "web";
 	jsStream = jsBundle(prod, filename);
-	copyStream = copy();
 	styleStream = styles();
 
 	if(watch) {
@@ -88,7 +87,7 @@ var buildProject = function (prod, filename) {
 			styles(prod);
 		});
 	}
-	return merge(jsStream, copyStream, styleStream);
+	return merge(jsStream, styleStream);
 }
 
 gulp.task('dev',['set-dev'], function(){
@@ -99,10 +98,13 @@ gulp.task('devLanding',['set-dev'], function(){
 	return buildProject(false, 'landing');
 });
 
-gulp.task('deploy',['set-prod'], function(){
-	// return merge(buildProject(true), buildProject(true, 'landing'));
-		return merge(buildProject(true), buildProject(true, 'landing'));
+gulp.task('deploy',['set-prod', 'install'], function(){
+	return merge(buildProject(true), buildProject(true, 'landing'));
 });
+
+gulp.task('install', function(){
+	return copy();
+})
 
 gulp.task('set-dev', function() {
 	return process.env.NODE_ENV = 'development';

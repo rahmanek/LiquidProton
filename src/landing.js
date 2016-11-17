@@ -36,8 +36,8 @@ var Landing = React.createClass({
 		var transaction = this.state.transaction;
 		if(transaction === null) return (<div>Loading...</div>);
 		var date = new Date(Date.parse(transaction.transactedAt));
-		var formattedDate = date.toLocaleString();
-
+		// Remove seconds from locale date string
+		var formattedDate = date.toLocaleString().replace(/([:][1-9]{2}[" "])/, " ");
 		var contactItems = [];
 		var faIcons = {
 			facebook:"facebook",
@@ -81,17 +81,29 @@ var Landing = React.createClass({
 					</div>
 				</div>
 				<div className="row vertical-align">
-					<div className="col-xs-8">
+					<div className="col-xs-12">
 						<img className="logo" src="/assets/logos/dunkin.jpg"/>
 						{/* {transaction.Key.name} */}
 					</div>
-					<div className="col-xs-4 align-center">
-						<button type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" className="margin-right-10 btn btn-secondary btn-sm"><i className="fa fa-bars"></i></button>
-						<button type="button" data-toggle="collapse" data-target="#share" className="margin-left-10 btn btn-secondary btn-sm"><i className="fa fa-share-alt"></i></button>
-					</div>
-
 				</div>
-				<div id="share" className="bg-inverse row collapse text-white padding-top-10 padding-bottom-5">
+
+				<div className="row activity-header">
+					<div className="col-xs-8 date">
+						{formattedDate}
+					</div>
+					<div className="col-xs-4 total align-center">
+						${(transaction.total / 100).toFixed(2)}
+					</div>
+				</div>
+				<div className="row margin-top-20 vertical-align margin-bottom-15 ">
+					<div className="col-xs-6 align-center">
+						<button type="button" data-toggle="collapse" data-target="#share" className="margin-left-25 btn btn-secondary btn-sm">Share <i className="fa fa-share-alt"></i></button>
+					</div>
+					<div className="col-xs-6 align-center">
+						<button type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" className="margin-right-25 btn btn-secondary btn-sm">Connect <i className="fa fa-arrows-h"></i></button>
+					</div>
+				</div>
+				<div id="share" className="bg-inverse row collapse text-white padding-top-10 padding-bottom-5 margin-bottom-15">
 					<div className="col-xs-12 align-center margin-bottom-15">
 						Share your transaction
 					</div>
@@ -116,15 +128,7 @@ var Landing = React.createClass({
 						):<div className="col-xs-12 margin-bottom-15"></div>
 					}
 				</div>
-				<div className="row activity-header">
-					<div className="col-xs-8 date">
-						{formattedDate}
-					</div>
-					<div className="col-xs-4 total align-center">
-						${transaction.total / 100}
-					</div>
-				</div>
-				<div className="row margin-top-20 vertical-align">
+				<div className="row vertical-align">
 					<div className="col-xs-6">
 						{transaction.address.line1}{(typeof transaction.address.line2 == "undefined")?"":transaction.address.line2}<br/>
 						{transaction.address.city}, {transaction.address.state} {transaction.address.postalCode}
@@ -136,7 +140,7 @@ var Landing = React.createClass({
 				<div className="row promo1 align-center margin-top-10">
 					Get a free donut on your next visit! <br/>
 					<a className="promo" href="javascript:">
-						<button type="button" className="col-xs-6 offset-xs-3 btn btn-sm btn-info" onClick={this.sendCoupon} data-dismiss="modal">
+						<button type="button" className="col-xs-6 offset-xs-3 btn btn-sm btn-app-secondary margin-top-10" onClick={this.sendCoupon} data-dismiss="modal">
 							Click here to claim
 						</button>
 					</a>
@@ -158,7 +162,7 @@ var Landing = React.createClass({
 								<tr className={(groupStart)?"newSection":""} key={i}>
 									<td>{quantity}</td>
 									<td>{item.description}</td>
-									<td>${item.total/100}</td>
+									<td>${(item.total/100).toFixed(2)}</td>
 								</tr>
 							);
 						})
@@ -183,7 +187,7 @@ var Landing = React.createClass({
 							<div>Return stuff in 90 days and you good.</div>
 						</div>
 						<div className="row padding-top-20">
-							<button type="button" className="col-xs-6 offset-xs-3 btn btn-primary" onClick={this.clearForm} data-dismiss="modal">
+							<button type="button" className="col-xs-6 offset-xs-3 btn btn-app-primary" onClick={this.clearForm} data-dismiss="modal">
 								Go Back
 							</button>
 						</div>
@@ -196,7 +200,7 @@ var Landing = React.createClass({
 							<div>You should receive your coupon by text soon!</div>
 						</div>
 						<div className="row padding-top-20">
-							<button type="button" className="col-xs-6 offset-xs-3 btn btn-primary" onClick={this.clearForm} data-dismiss="modal">
+							<button type="button" className="col-xs-6 offset-xs-3 btn btn-app-primary" onClick={this.clearForm} data-dismiss="modal">
 								Go Back
 							</button>
 						</div>
