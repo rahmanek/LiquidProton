@@ -1,5 +1,4 @@
 import { React, ReactRouter } from '../cdn'
-import Footer from '../components/Footer.js'
 import Authenticate from '../classes/Authenticate';
 
 var browserHistory = ReactRouter.browserHistory;
