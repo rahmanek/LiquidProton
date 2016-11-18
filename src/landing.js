@@ -11,7 +11,7 @@ var Landing = React.createClass({
 			showPhone: false
 		};
 	},
-	componentDidMount: function(){
+	componentWillMount: function(){
 		$.get(config.apiHost + "/v1/transaction/" + window.location.pathname.split("/")[2])
 		.then((data)=>{
 			data.Items.sort(function(a,b){
@@ -80,10 +80,20 @@ var Landing = React.createClass({
 						</ul>
 					</div>
 				</div>
-				<div className="row vertical-align">
-					<div className="col-xs-12">
-						<img className="logo" src="/assets/logos/dunkin.jpg"/>
-						{/* {transaction.Key.name} */}
+				<div className="row">
+					<div className="col-xs-12 margin-top-15">
+						<div className="col-xs-3 padding-left-0">
+							<img className="logo" src="/assets/logos/dunk.jpg"/>
+						</div>
+						<div className="col-xs-9 padding-left-0">
+							<div className="inline-block">
+								<div className="brand-title vertical-align">{transaction.Key.name}</div>
+								<div className="address">
+									{transaction.address.line1}{(typeof transaction.address.line2 == "undefined")?"":" " + transaction.address.line2}
+									, {transaction.address.city}, {transaction.address.state} {transaction.address.postalCode}
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -92,15 +102,20 @@ var Landing = React.createClass({
 						{formattedDate}
 					</div>
 					<div className="col-xs-4 total align-center">
-						${(transaction.total / 100).toFixed(2)}
+						{/* ${(transaction.total / 100).toFixed(2)} */}
+						<div className="col-xs-6">
+						 <i className="fa fa-share-alt" data-toggle="collapse" data-target="#share"/>
+						</div><div>
+						 <i className="fa fa-bars" data-toggle="collapse" data-target="#exCollapsingNavbar"/>
+						</div>
 					</div>
 				</div>
-				<div className="row margin-top-20 vertical-align margin-bottom-15 ">
-					<div className="col-xs-6 align-center">
-						<button type="button" data-toggle="collapse" data-target="#share" className="margin-left-25 btn btn-secondary btn-sm">Share <i className="fa fa-share-alt"></i></button>
+				<div className="row promo1 vertical-align">
+					<div className="col-xs-6">
+						<a href="javascript:" onClick={this.returnPolicy}>Return Policy</a>
 					</div>
-					<div className="col-xs-6 align-center">
-						<button type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" className="margin-right-25 btn btn-secondary btn-sm">Connect <i className="fa fa-arrows-h"></i></button>
+					<div className="col-xs-6 price align-right padding-right-0">
+						${(transaction.total / 100).toFixed(2)}
 					</div>
 				</div>
 				<div id="share" className="bg-inverse row collapse text-white padding-top-10 padding-bottom-5 margin-bottom-15">
@@ -128,23 +143,14 @@ var Landing = React.createClass({
 						):<div className="col-xs-12 margin-bottom-15"></div>
 					}
 				</div>
-				<div className="row vertical-align">
+				{/* <div className="row vertical-align">
 					<div className="col-xs-6">
-						{transaction.address.line1}{(typeof transaction.address.line2 == "undefined")?"":transaction.address.line2}<br/>
-						{transaction.address.city}, {transaction.address.state} {transaction.address.postalCode}
 					</div>
-					<div className="col-xs-6 align-right">
+					<div className="col-xs-6 align-center">
 						<a href="javascript:" onClick={this.returnPolicy}>Return Policy</a>
 					</div>
-				</div>
-				<div className="row promo1 align-center margin-top-10">
-					Get a free donut on your next visit! <br/>
-					<a className="promo" href="javascript:">
-						<button type="button" className="col-xs-6 offset-xs-3 btn btn-sm btn-app-secondary margin-top-10" onClick={this.sendCoupon} data-dismiss="modal">
-							Click here to claim
-						</button>
-					</a>
-				</div>
+				</div> */}
+
 				<table className="table">
 					<thead><tr><th></th><th>Item</th><th>Total</th></tr></thead>
 					<tbody>
@@ -169,14 +175,17 @@ var Landing = React.createClass({
 					}
 					</tbody>
 				</table>
-				<div className="row footer margin-bottom-20">
-					<div className="col-xs-6 promo1">
-					Z1
-					</div>
-					<div className="col-xs-6 promo2">
-					Z2
+				<div className="row promo1 align-center">
+					<div className="col-xs-12">
+						Get a free donut on your next visit! <br/>
+						<a className="promo" href="javascript:">
+							<button type="button" className="btn btn-sm btn-secondary margin-top-10" onClick={this.sendCoupon} data-dismiss="modal">
+								Claim Here
+							</button>
+						</a>
 					</div>
 				</div>
+
 				<div className="row">
 						<svg className="margin-auto display-block" id="code128"></svg>
 				</div>

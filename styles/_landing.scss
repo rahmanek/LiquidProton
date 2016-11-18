@@ -2,9 +2,16 @@
 .line-height-inherit{
    line-height: inherit;
 }
+button{
+   border-radius: 0;
+}
 
 a{
    text-decoration:none;
+}
+
+.price{
+   font-size:32px;
 }
 
 .footer{
@@ -23,12 +30,19 @@ a{
       text-align: center;
    }
    .logo{
-      display:block;
-      width:75%;
+      display:inline-block;
+      width:68px;
       max-width:300px;
-      height:auto;
-      margin: auto;
+      height: 68px;
       z-index: 0;
+      vertical-align: top;
+   }
+   .brand-title{
+      font-size:24px;
+   }
+   .address{
+      color: #888888;
+      font-size:12px;
    }
    a{
       color:$primary-color;
@@ -59,6 +73,10 @@ a{
       }
    }
 
+   .primary-dark{
+      background-color: $primary-dark;
+   }
+
    .total{
       background-color:$primary-color;
       padding:5px;
@@ -67,13 +85,17 @@ a{
    }
 
    .activity-header{
-      border-bottom: 1px solid $primary-color;
+      border-top: 1px solid $primary-color;
+      margin-top:15px;
       // padding-bottom:7px;
    }
    .promo1{
       background-color:$primary-color;
       padding:10px 10px;
       color:white;
+      a{
+         color:white;
+      }
    }
    .promo2{
       background-color:white;
