@@ -32,6 +32,9 @@ var Landing = React.createClass({
 	returnPolicy: function(){
 		jQuery('#returnModal').modal('show');
 	},
+	toggleCollapse: function(target){
+		$("#" + target).collapse('toggle');
+	},
 	render: function (){
 		var transaction = this.state.transaction;
 		if(transaction === null) return (<div>Loading...</div>);
@@ -104,9 +107,9 @@ var Landing = React.createClass({
 					<div className="col-xs-4 total align-center">
 						{/* ${(transaction.total / 100).toFixed(2)} */}
 						<div className="col-xs-6">
-						 <i className="fa fa-share-alt" data-toggle="collapse" data-target="#share"/>
+						 <i className="fa fa-share-alt" onClick={()=>this.toggleCollapse("share")}/>
 						</div><div>
-						 <i className="fa fa-bars" data-toggle="collapse" data-target="#exCollapsingNavbar"/>
+						 <i className="fa fa-bars" onClick={()=>this.toggleCollapse("exCollapsingNavbar")}/>
 						</div>
 					</div>
 				</div>
