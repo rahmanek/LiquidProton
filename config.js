@@ -3,7 +3,7 @@ var environment = "production";
 export default {
 	environment: environment,
 	apiHost: (function(){
-		if(environment == "development") return "http://apitest.flectino.com";
+		if(environment == "production") return "http://apitest.flectino.com";
 		else return "http://localhost:3010";
 	}()),
 	webHost: (function(){
