@@ -8,7 +8,9 @@ var Landing = React.createClass({
 		return {
 			transaction: null,
 			showEmail: false,
-			showPhone: false
+			showPhone: false,
+			navbar: false,
+			share: false
 		};
 	},
 	componentWillMount: function(){
@@ -33,6 +35,9 @@ var Landing = React.createClass({
 		jQuery('#returnModal').modal('show');
 	},
 	toggleCollapse: function(target){
+		var newState = {};
+		newState[target] = !document.getElementById(target).classList.contains("in");
+		this.setState(newState);
 		$("#" + target).collapse('toggle');
 	},
 	render: function (){
@@ -71,7 +76,7 @@ var Landing = React.createClass({
 
 		return (
          <div id="landing" className="container">
-				<div className="collapse menu overflow-scroll-y position-fixed" id="exCollapsingNavbar">
+				<div className="collapse menu overflow-scroll-y position-fixed" id="navbar">
 					<div className="height-100vh bg-inverse text-white">
 						<li className="list-group-item bg-inverse menuHead">Connect with {transaction.Key.name}</li>
 						<ul className="list-group bg-inverse">
@@ -106,10 +111,19 @@ var Landing = React.createClass({
 					</div>
 					<div className="col-xs-4 total align-center">
 						{/* ${(transaction.total / 100).toFixed(2)} */}
-						<div className="col-xs-6">
-						 <i className="fa fa-share-alt" onClick={()=>this.toggleCollapse("share")}/>
-						</div><div>
-						 <i className="fa fa-bars" onClick={()=>this.toggleCollapse("exCollapsingNavbar")}/>
+						<div className="col-xs-6" onClick={()=>this.toggleCollapse("share")}>
+						{
+							(this.state.share)?
+							<i className="fa fa-share-alt color-black"/>:
+							<i className="fa fa-share-alt"/>
+						}
+						</div>
+						<div className="col-xs-6 " onClick={()=>this.toggleCollapse("navbar")}>
+						 {
+							 (this.state.navbar)?
+							 <i className="fa fa-bars color-black"/>:
+							 <i className="fa fa-bars"/>
+						 }
 						</div>
 					</div>
 				</div>
