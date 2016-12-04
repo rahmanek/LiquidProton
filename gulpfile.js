@@ -53,7 +53,8 @@ var jsBundle = function (prod, filename){
 
 	var bundle = browserify({entries: 'src/' + filename + '.js', debug: !prod});
 	if (watch) bundle = watchify(bundle);
-	bundle.transform(babelify)
+	bundle
+	.transform(babelify)
 	.on('log', gutil.log)
 	.on('update', createBundle);
 
@@ -94,12 +95,16 @@ gulp.task('dev',['set-dev'], function(){
 	return buildProject(false);
 });
 
-gulp.task('devLanding',['set-dev'], function(){
-	return buildProject(false, 'landing');
+gulp.task('transaction',['set-dev'], function(){
+	return buildProject(false, 'transaction');
+});
+
+gulp.task('coupon',['set-dev'], function(){
+	return buildProject(false, 'coupon');
 });
 
 gulp.task('deploy',['set-prod', 'install'], function(){
-	return merge(buildProject(true), buildProject(true, 'landing'));
+	return merge(buildProject(true), buildProject(true, 'transaction'), buildProject(true, 'coupon'));
 });
 
 gulp.task('install', function(){

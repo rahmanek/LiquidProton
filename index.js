@@ -9,11 +9,15 @@ app.get('/', function (req, res) {
   res.sendFile(path.resolve(__dirname + '/public/creative/index.html'));
 });
 
+app.use(express.static(__dirname + '/public'));
+
 app.get('/t*', function (req, res) {
-  res.sendFile(path.resolve(__dirname + '/public/landing.html'));
+  res.sendFile(path.resolve(__dirname + '/public/transaction.html'));
 });
 
-app.use(express.static(__dirname + '/public'));
+app.get('/c*', function (req, res) {
+  res.sendFile(path.resolve(__dirname + '/public/coupon.html'));
+});
 
 app.get('*', function (req, res) {
   res.sendFile(path.resolve(__dirname + '/public/index.html'));

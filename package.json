@@ -8,13 +8,13 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "cd public && concurrently \"gulp dev --watch\" \"lite-server\"",
-    "dev3": "cd public && concurrently \"npm run dev2\" \"npm run start\"",
+    "dev": "gulp dev --watch",
     "deploy": "gulp deploy",
     "view": "npm run deploy && cd builds/web && http-server -o",
     "eslint": "eslint src/**",
     "test": "gulp copy",
-	 "dev2": "cd public && concurrently \"gulp devLanding --watch\" \"lite-server\"",
+	  "transaction": "gulp transaction --watch",
+	  "coupon": "gulp coupon --watch",
     "postinstall": "bower install && gulp deploy && cd public/creative && npm install"
   },
   "author": "Ebad Rahman <rahmanek@gmail.com>",

@@ -3,7 +3,7 @@ import config from '../config'
 import Modal from './components/modal'
 import { getQueryVariable } from './classes/Utilities'
 
-var Landing = React.createClass({
+var Transaction = React.createClass({
 	getInitialState:function(){
 		return {
 			transaction: null,
@@ -75,7 +75,7 @@ var Landing = React.createClass({
 		})
 
 		return (
-         <div id="landing" className="container">
+         <div id="transaction" className="container">
 				<div className="collapse menu overflow-scroll-y position-fixed" id="navbar">
 					<div className="height-100vh bg-inverse text-white">
 						<li className="list-group-item bg-inverse menuHead">Connect with {transaction.Key.name}</li>
@@ -240,6 +240,6 @@ var Landing = React.createClass({
 
 ReactDOM.render((
 	<div>
-		<Landing/>
+		<Transaction/>
 	</div>
 ), document.getElementById('app'));
