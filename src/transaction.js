@@ -1,7 +1,7 @@
 import { ReactDOM, React } from './cdn'
 import config from '../config'
 import Modal from './components/modal'
-import { getQueryVariable } from './classes/Utilities'
+import ContactList from './components/contactList'
 
 var Transaction = React.createClass({
 	getInitialState:function(){
@@ -13,7 +13,7 @@ var Transaction = React.createClass({
 			share: false
 		};
 	},
-	componentWillMount: function(){
+	componentDidMount: function(){
 		$.get(config.apiHost + "/v1/transaction/" + window.location.pathname.split("/")[2])
 		.then((data)=>{
 			data.Items.sort(function(a,b){
@@ -42,56 +42,22 @@ var Transaction = React.createClass({
 	},
 	render: function (){
 		var transaction = this.state.transaction;
+		console.log(transaction)
 		if(transaction === null) return (<div>Loading...</div>);
 		var date = new Date(Date.parse(transaction.transactedAt));
 		// Remove seconds from locale date string
 		var formattedDate = date.toLocaleString().replace(/([:][1-9]{2}[" "])/, " ");
-		var contactItems = [];
-		var faIcons = {
-			facebook:"facebook",
-			phone: "phone",
-			web: "globe",
-			googlePlus: "google-plus",
-			phone: "phone",
-			email: "envelope",
-			instagram: "instagram",
-			pinterest: "pinterest-p",
-			twitter: "twitter"
-		}
 
-		transaction.contact.map(function(contact,i){
-			var preValue = contact.value;
-			if(contact.type == "email") contact.value = "mailto:" + preValue;
-			if(contact.type == "phone") contact.value = "tel:" + preValue;
-			contactItems.push(
-				<a key={i} href={contact.value} className="color-white">
-					<li className="list-group-item bg-inverse">
-						{contact.description}
-						<i className={"vertical-align-middle float-right fa fa-fw line-height-inherit fa-" + faIcons[contact.type]}></i>
-						{(contact.type == "phone" || contact.type == "email")?<div className="text-muted nowrap">{preValue}</div>:<div></div>}
-					</li>
-				</a>
-			);
-		})
+		var logoPath = "/assets/logos/dunk.jpg"
+		if(transaction.Key.name == "Shaw's") logoPath = "/assets/logos/shaws.jpg"
 
 		return (
          <div id="transaction" className="container">
-				<div className="collapse menu overflow-scroll-y position-fixed" id="navbar">
-					<div className="height-100vh bg-inverse text-white">
-						<li className="list-group-item bg-inverse menuHead">Connect with {transaction.Key.name}</li>
-						<ul className="list-group bg-inverse">
-							{
-								contactItems.map(function(item){
-									return item;
-								})
-							}
-						</ul>
-					</div>
-				</div>
+				<ContactList transaction={this.state.transaction}/>
 				<div className="row">
 					<div className="col-xs-12 margin-top-15">
 						<div className="col-xs-3 padding-left-0">
-							<img className="logo" src="/assets/logos/dunk.jpg"/>
+							<img className="logo" src={logoPath}/>
 						</div>
 						<div className="col-xs-9 padding-left-0">
 							<div className="inline-block">
@@ -160,13 +126,6 @@ var Transaction = React.createClass({
 						):<div className="col-xs-12 margin-bottom-15"></div>
 					}
 				</div>
-				{/* <div className="row vertical-align">
-					<div className="col-xs-6">
-					</div>
-					<div className="col-xs-6 align-center">
-						<a href="javascript:" onClick={this.returnPolicy}>Return Policy</a>
-					</div>
-				</div> */}
 
 				<table className="table">
 					<thead><tr><th></th><th>Item</th><th>Total</th></tr></thead>
